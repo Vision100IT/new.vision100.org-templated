@@ -67,6 +67,8 @@ export default function App() {
   const [pagesFetched, setPagesFetched] = useState(false);
   const [newslettersFetched, setnewslettersFetched] = useState(false);
   const [newslettersData, setNewslettersData] = useState();
+  const [upcomingEventsDataFetched, setUpcomingEventDataFetched] = useState(false);
+  const [upcomingEventsData, setUpcomingEventsData] = useState();
 
   useEffect(() => {
     if (pagesFetched === false) {
@@ -88,6 +90,15 @@ export default function App() {
     }
   }, [newslettersFetched, newslettersData]);
 
+  useEffect(() => {
+    if (upcomingEventsDataFetched === false) {
+      fetchDrupalData('upcomingEvents', {}).then(response => {
+        setUpcomingEventsData(response);
+        setUpcomingEventDataFetched(true);
+      });
+    }
+  }, [upcomingEventsDataFetched, upcomingEventsData]);
+
 
   return pagesFetched === true ? (
     <Router>
@@ -100,6 +111,7 @@ export default function App() {
           <HomePageWrapper
             globalSermons={globalSermons}
             setGlobalSermons={setGlobalSermons}
+            upcomingEventsData={upcomingEventsData}
           />
         )}
       />

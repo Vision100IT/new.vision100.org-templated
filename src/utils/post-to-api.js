@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch';
 
 const DRUPAL_WEBFORM_SUBMISSION =
-  'https://api-location.newfrontdoor.org/webform_submission/submission';
+  'https://api.vision100.org/webform_submission/submission';
 
 export function postToWebform(formData, callback) {
   fetch(DRUPAL_WEBFORM_SUBMISSION, {

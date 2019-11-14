@@ -14,6 +14,7 @@ const apiRoute = {
   page: 'react_page_api',
   all_pages: 'all_v100_pages_api',
   newsletter: 'v100_newsletter_api',
+  upcomingEvents: 'upcoming_events_api'
 };
 
 export async function fetchDrupalData(type, obj) {

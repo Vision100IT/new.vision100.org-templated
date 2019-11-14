@@ -8,6 +8,10 @@ const Wrapper = styled('div')`
   @media (max-width: 1200px) {
     left: 0;
   }
+  @media (max-width: 580px) {
+    max-width: 90%;
+    grid-template-columns: repeat(1, 1fr)
+  }
   min-width: 200px;
   width: 750px;
   list-style: none;

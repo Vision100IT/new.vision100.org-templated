@@ -19,7 +19,7 @@ export function CurrentSeries({latestSermon}) {
         <img src={latestSermon.series_img} alt={latestSermon.sermonseries}  style={{width: "100%"}}/>
       </Link>
       <Link to={'/series/' + latestSermon.series_id}>
-        <p>{latestSermon.sermonseries}</p>
+        <p dangerouslySetInnerHTML={{__html : latestSermon.sermonseries}} />
       </Link>
     </section>
   );
@@ -37,11 +37,11 @@ export function LatestSermon({latestSermon}) {
       </Link>
       <Link
         to={'/series/' + latestSermon.series_id}
-      ><p>{latestSermon.sermonseries}</p></Link>
+      ><p dangerouslySetInnerHTML={{__html: latestSermon.sermonseries}}/></Link>
       <Link to={`/sermon/${latestSermon.nid}`}>
-        <p>{latestSermon.node_title ? latestSermon.node_title : `Untitled`}</p>
+      {latestSermon.node_title ? <p dangerouslySetInnerHTML={{__html: latestSermon.node_title}}/> : <p>Untitled</p>}
       </Link>
-      <p>{latestSermon.preacher}</p>
+      <p dangerouslySetInnerHTML={{__html: latestSermon.preacher}}/>
     </section>
   );
 }

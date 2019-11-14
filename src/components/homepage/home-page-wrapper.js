@@ -14,7 +14,7 @@ const SliderWrapper = styled('div')`
   text-align: center;
 `;
 
-export default function HomePageWrapper({ globalSermons, setGlobalSermons }) {
+export default function HomePageWrapper({ globalSermons, setGlobalSermons, upcomingEventsData }) {
   console.log(globalSermons);
   return (
     <section>
@@ -25,6 +25,7 @@ export default function HomePageWrapper({ globalSermons, setGlobalSermons }) {
       <HomePageContent
         globalSermons={globalSermons}
         setGlobalSermons={setGlobalSermons}
+        upcomingEventsData={upcomingEventsData}
       />
     </section>
   );

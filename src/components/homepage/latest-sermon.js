@@ -24,8 +24,8 @@ export default function LatestSermon({
       {node_title ? (
         <div>
           <Img src={sermon_img ? sermon_img : series_img} />
-          <Link to={`/sermon/${nid}`}>{node_title}</Link>
-          <div>{preacher}</div>
+          <Link to={`/sermon/${nid}`} dangerouslySetInnerHTML={{__html: node_title}} />
+          <div dangerouslySetInnerHTML={{__html : preacher}}></div>
           <AudioPlayer
             playlist={[{ url }]}
             controls={['playpause', 'spacer', 'progress']}

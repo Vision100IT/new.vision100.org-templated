@@ -1,15 +1,30 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import UpcomingEvent from '../models/upcoming-event';
 import styled from '@emotion/styled';
+import {fetchDrupalData} from '../../utils/fetch-functions';
 
 const Header = styled('h2')`
   color: #ef3b24;
   text-transform: uppercase;
   font-family: Cabin,sans-serif;`;
 
-export default function UpcomingEvents({ upcomingEvents }) {
+export default function UpcomingEvents({ upcomingEventsData }) {
+  const [upcomingEvents, setUpcomingEvents] = useState(upcomingEventsData);
+  const [upcomingEventsFetched, setUpcomingEventsFetched] = useState(Boolean(upcomingEvents));
+  
+  useEffect(() => {
+    if (upcomingEventsFetched === false) {
+        fetchDrupalData('upcomingEvents', {}).then(response => {
+            setUpcomingEvents(response);
+            setUpcomingEventsFetched(true);
+        });
+    } else {
+        setUpcomingEvents(upcomingEvents);
+    }
+}, [upcomingEventsFetched, upcomingEvents]);
+
   return (
     <section>
       <Header>Upcoming Events</Header>

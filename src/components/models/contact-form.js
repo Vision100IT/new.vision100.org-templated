@@ -1,12 +1,24 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Form, Field} from 'react-final-form';
 import styled from '@emotion/styled';
+import {postToWebform} from '../../utils/post-to-api';
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 const onSubmit = async values => {
+  var form = new FormData();
+  form.append("webform", "0938f16b-83ac-49e9-be04-f08bfad9d70c");
+  form.append("submission[data][1][values][0]", values["firstName"].replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+  form.append("submission[data][2][values][0]", values["email"].replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+  form.append("submission[data][3][values][0]", values["subject"].replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+  form.append("submission[data][4][values][0]", values["message"].replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
   await sleep(300);
-  window.alert(JSON.stringify(values, 0, 2));
+
+  postToWebform(form , function(data){
+        console.log("submitted")
+      });
+    
+  window.alert("Thanks for getting in touch. We will get back to you as soon as we can.");
 };
 
 const required = value => (value ? undefined : 'Required');
@@ -41,6 +53,7 @@ const FormGroup = styled.div`
 `;
 
 export default function ContactForm() {
+  const [formSubmitted, setFormSubmitted] = useState(false);
   return (
     <section>
       <div
@@ -49,7 +62,7 @@ export default function ContactForm() {
           paddingBottom: '40px'
         }}
       >
-        <Form
+        {!formSubmitted ? <Form
           render={({handleSubmit, submitting, pristine}) => (
             <form onSubmit={handleSubmit}>
               <div>
@@ -143,7 +156,8 @@ export default function ContactForm() {
             </form>
           )}
           onSubmit={onSubmit}
-        />
+        /> : <p>Thank you for contact us we will get back to you soon.</p>}
+        
       </div>
     </section>
   );
