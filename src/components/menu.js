@@ -46,7 +46,7 @@ export default function Menu({ items, isVisible }) {
 
   //close submenu when user clicks outside of menu area
   function handleClick(e) {
-    if (menuRef.current.contains(e.target)) {
+    if (menuRef.current.contains(e.target) && !e.target.href) {
       return;
     }
 
