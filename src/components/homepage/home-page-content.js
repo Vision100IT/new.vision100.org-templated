@@ -31,7 +31,8 @@ const placeholderEvents = [
   },
   {
     title: 'Saturday Event',
-    startdate: 'Saturday, x Month, YYYY 9:30PM'
+    startdate: 'Saturday, x Month, YYYY 9:30PM',
+    url: 'http://google.com'
   }
 ];
 
@@ -48,10 +49,10 @@ const Section = styled('section')`
   }
 `;
 
-export default function HomePageContent({ globalSermons, setGlobalSermons }) {
+export default function HomePageContent({ globalSermons, setGlobalSermons, upcomingEventsData }) {
   const [sermons, setSermons] = useState(globalSermons);
   const [churchDetails, setChurchDetails] = useState(churchDeets);
-  const [upcomingEvents, setUpcomingEvents] = useState(placeholderEvents);
+  const [upcomingEvents, setUpcomingEvents] = useState(upcomingEventsData);
 
   useEffect(() => {
     setSermons(globalSermons);
@@ -64,6 +65,18 @@ export default function HomePageContent({ globalSermons, setGlobalSermons }) {
       });
     }
   }, [sermons, setGlobalSermons]);
+
+  useEffect(() => {
+    setUpcomingEvents(upcomingEventsData);
+  }, [upcomingEventsData]);
+
+  useEffect(() => {
+    if (!upcomingEvents) {
+      fetchDrupalData('upcomingEvents', {}).then(response => {
+        setUpcomingEvents(response);
+      });
+    }
+  }, [upcomingEvents, setUpcomingEvents]);
 
   return (
     <Section>
