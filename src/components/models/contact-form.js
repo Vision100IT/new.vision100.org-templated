@@ -63,7 +63,7 @@ export default function ContactForm() {
         }}
       >
         <Form
-          render={({ handleSubmit, submitting, pristine }) => (
+          render={({ handleSubmit, submitting, pristine, submitSucceeded }) => (
             <form onSubmit={handleSubmit}>
               <div>
                 <FormGroup>
@@ -147,7 +147,7 @@ export default function ContactForm() {
                   <button
                     type="submit"
                     name="submit"
-                    disabled={submitting || pristine}
+                    disabled={submitting || pristine || submitSucceeded}
                   >
                     Send message
                   </button>
