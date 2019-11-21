@@ -28,6 +28,13 @@ const Wrapper = styled('div')`
 
 const Blurb = styled('div')`
   background-color: ${props => props.theme.colors.highlight};
+  @media (max-width: 1200px) {
+    left: 0;
+  }
+  @media (max-width: 580px) {
+    max-width: 90%;
+    grid-template-columns: repeat(1, 1fr)
+  }
   width: 100%;
   color: white;
   padding: 10px 20px;

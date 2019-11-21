@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ThemeProvider } from 'emotion-theming';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
@@ -42,9 +42,29 @@ const Caret = styled('span')`
 
 export default function Menu({ items, isVisible }) {
   const [openMenu, updateOpenMenu] = useState(null);
+  const menuRef = useRef();
+
+  //close submenu when user clicks outside of menu area
+  function handleClick(e) {
+    if (menuRef.current.contains(e.target)) {
+      return;
+    }
+
+    updateOpenMenu(null)
+  }
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClick, false)
+    return () => {
+      document.removeEventListener('mousedown', handleClick, false)
+    };
+  });
+
+
+
   return (
     <ThemeProvider theme={theme}>
-      <List isVisible={isVisible ? 'block' : 'none'}>
+      <List isVisible={isVisible ? 'block' : 'none'} ref={menuRef}>
         {items.map(item => {
           const { title, submenu, slug, name } = item;
 
@@ -58,6 +78,8 @@ export default function Menu({ items, isVisible }) {
                   }}
                   onClick={() =>
                     updateOpenMenu(openMenu === title ? null : title)}
+                  onMouseEnter={() =>
+                    updateOpenMenu(title)}
                 >
                   {title}
                   <Caret />
