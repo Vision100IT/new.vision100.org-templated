@@ -90,7 +90,6 @@ export default function SubmenuBlock({ submenu: { blurb, menus }, visible, updat
 
     if (linkRef.current.parentElement.contains(e.target) && e.target.href) {
       e.target.click()
-      console.log(e.target.href)
       updateOpenMenu(null);
     }
   }
