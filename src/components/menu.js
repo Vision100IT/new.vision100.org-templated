@@ -84,7 +84,7 @@ export default function Menu({ items, isVisible }) {
                   {title}
                   <Caret />
                 </a>
-                <SubmenuBlock submenu={submenu} visible={openMenu === title} />
+                <SubmenuBlock submenu={submenu} visible={openMenu === title} updateOpenMenu={updateOpenMenu} />
               </li>
             );
           }
