@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { Global, css } from '@emotion/core';
+import React, {useState, useEffect} from 'react';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {Global, css} from '@emotion/core';
 import Navigation from './components/navigation';
 import HomePageWrapper from './components/homepage/home-page-wrapper';
 import OtherPageWrapper from './components/other-page-wrapper';
 import Footer from './components/footer';
-import { fetchDrupalData } from './utils/fetch-functions';
+import {fetchDrupalData} from './utils/fetch-functions';
 
 require('typeface-lato');
 require('typeface-roboto-slab');
 
 const globalStyles = css`
-  
-  html, body {
+  html,
+  body {
     margin: 0;
     outline: 0;
     padding: 0;
-    overflow-x: hidden; 
+    overflow-x: hidden;
   }
 
   body {
@@ -67,14 +67,18 @@ export default function App() {
   const [pagesFetched, setPagesFetched] = useState(false);
   const [newslettersFetched, setnewslettersFetched] = useState(false);
   const [newslettersData, setNewslettersData] = useState();
-  const [upcomingEventsDataFetched, setUpcomingEventDataFetched] = useState(false);
+  const [upcomingEventsDataFetched, setUpcomingEventDataFetched] = useState(
+    false
+  );
   const [upcomingEventsData, setUpcomingEventsData] = useState();
 
   useEffect(() => {
     if (pagesFetched === false) {
       fetchDrupalData('all_pages', {}).then(response => {
-        var mapped = response.map(item => ({ [item.page_title.toLowerCase()]: item }));
-        var mappedObj = Object.assign({}, ...mapped);
+        let mapped = response.map(item => ({
+          [item.page_title.toLowerCase()]: item
+        }));
+        let mappedObj = Object.assign({}, ...mapped);
         setpagesData(mappedObj);
         setPagesFetched(true);
       });
@@ -98,7 +102,6 @@ export default function App() {
       });
     }
   }, [upcomingEventsDataFetched, upcomingEventsData]);
-
 
   return pagesFetched === true ? (
     <Router>
@@ -128,5 +131,7 @@ export default function App() {
       />
       <Route path="*" component={Footer} />
     </Router>
-  ) : ('');
+  ) : (
+    ''
+  );
 }
