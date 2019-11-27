@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 const Wrapper = styled('div')`
   position: absolute;
@@ -10,12 +10,12 @@ const Wrapper = styled('div')`
   }
   @media (max-width: 580px) {
     max-width: 90%;
-    grid-template-columns: repeat(1, 1fr)
+    grid-template-columns: repeat(1, 1fr);
   }
   min-width: 200px;
   width: 750px;
   list-style: none;
-  display: ${props => props.display};
+  display: grid;
   grid-template-columns: ${props => `repeat(${props.columns}, 1fr)`};
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-bottom: 3px solid ${props => props.theme.colors.highlight};
@@ -71,16 +71,14 @@ const Anchor = styled(Link)`
 `;
 
 const ExternalLink = styled('a')`
-font-size: 14px;
-line-height: 20px;
-padding: 5px 0;`;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 5px 0;
+`;
 
-export default function SubmenuBlock({ submenu: { blurb, menus }, visible }) {
+export default function SubmenuBlock({submenu: {blurb, menus}, visible}) {
   return (
-    <Wrapper
-      columns={menus.length >= 2 ? menus.length + 1 : 3}
-      display={visible ? 'grid' : 'none'}
-    >
+    <Wrapper columns={menus.length >= 2 ? menus.length + 1 : 3}>
       <Blurb>{blurb}</Blurb>
       {menus.map(list => (
         <SubmenuList>
@@ -88,7 +86,17 @@ export default function SubmenuBlock({ submenu: { blurb, menus }, visible }) {
             <Header>{list.header}</Header>
             {list.items.map(item => (
               <li>
-                {item.externalLink === true ? <ExternalLink href={item.url} target="_blank" rel="noreferrer noopener">{item.name}</ExternalLink> : <Anchor to={`/${item.url}`}>{item.name}</Anchor>}
+                {item.externalLink === true ? (
+                  <ExternalLink
+                    href={item.url}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    {item.name}
+                  </ExternalLink>
+                ) : (
+                  <Anchor to={`/${item.url}`}>{item.name}</Anchor>
+                )}
               </li>
             ))}
           </ul>
