@@ -31,11 +31,17 @@ export default function UpcomingEvents({ upcomingEventsData }) {
       {upcomingEvents
         ? upcomingEvents.map(event => {
           return (
-            <UpcomingEvent
-              key={event.title + event.startdate}
-              title={event.title}
-              startdate={event.startdate}
-            />
+            <React.Fragment>
+              {event.url ? <a href={event.url} rel="noreferrer noopener"><UpcomingEvent
+                key={event.title + event.startdate}
+                title={event.title}
+                startdate={event.startdate}
+              /></a> : <UpcomingEvent
+                  key={event.title + event.startdate}
+                  title={event.title}
+                  startdate={event.startdate}
+                />}
+            </React.Fragment>
           );
         })
         : 'Loading, please wait...'}

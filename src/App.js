@@ -67,10 +67,9 @@ export default function App() {
   const [pagesFetched, setPagesFetched] = useState(false);
   const [newslettersFetched, setnewslettersFetched] = useState(false);
   const [newslettersData, setNewslettersData] = useState();
-  const [upcomingEventsDataFetched, setUpcomingEventDataFetched] = useState(
-    false
-  );
-  const [upcomingEventsData, setUpcomingEventsData] = useState();
+  const [upcomingEventsDataFetched, setUpcomingEventDataFetched] = useState(false);
+  const [upcomingEventsData, setUpcomingEventsData] = useState(null);
+
 
   useEffect(() => {
     if (pagesFetched === false) {
@@ -115,6 +114,7 @@ export default function App() {
             globalSermons={globalSermons}
             setGlobalSermons={setGlobalSermons}
             upcomingEventsData={upcomingEventsData}
+            setUpcomingEventsData={setUpcomingEventsData}
           />
         )}
       />

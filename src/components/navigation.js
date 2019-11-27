@@ -18,8 +18,8 @@ const Header = styled('header')`
 
 const MenuButton = styled('button')`
   flex: 0 1 auto;
-  border: 1px solid #c2b49a;
-  background: #c2b49a;
+  border: 1px solid #ef3b24;
+  background: #ef3b24;
   color: #fff;
   float: none;
   border-radius: 0;
