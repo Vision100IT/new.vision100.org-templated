@@ -1,8 +1,9 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AudioPlayer from 'react-responsive-audio-player';
 import '../../assets/css/audioplayer.css';
 import styled from '@emotion/styled';
+import SVGLogo from '../../assets/img/Logo.svg'
 
 const OuterGrid = styled.section`
   display: grid;
@@ -32,18 +33,19 @@ export default function SermonBlock({
     url,
     series_id,
     sermonseries,
+    series_img,
     text
   }
 }) {
   return (
     <OuterGrid>
-      <img src={sermon_img} style={{width: '100%'}} />
+      <img src={sermon_img ? sermon_img : series_img ? series_img : SVGLogo} style={{ width: '100%' }} />
       <Grid>
         <div>Date Preached: {datepreached}</div>
         <div>Preacher: {preacher}</div>
         <div>Sermon: </div>
         <AudioPlayer
-          playlist={[{url}]}
+          playlist={[{ url }]}
           controls={['playpause', 'spacer', 'progress']}
         />
         <a href={url}>Download</a>

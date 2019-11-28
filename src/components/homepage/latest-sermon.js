@@ -4,6 +4,7 @@ import AudioPlayer from 'react-responsive-audio-player';
 import '../../assets/css/audioplayer.css';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
+import SVGLogo from '../../assets/img/Logo.svg'
 
 const Img = styled('img')`
   width: 100%;
@@ -23,9 +24,9 @@ export default function LatestSermon({
       <Header>Past Talk</Header>
       {node_title ? (
         <div>
-          <Img src={sermon_img ? sermon_img : series_img} />
-          <Link to={`/sermon/${nid}`} dangerouslySetInnerHTML={{__html: node_title}} />
-          <div dangerouslySetInnerHTML={{__html : preacher}}></div>
+          <Img src={sermon_img ? sermon_img : series_img ? series_img : SVGLogo} />
+          <Link to={`/sermon/${nid}`} dangerouslySetInnerHTML={{ __html: node_title }} />
+          <div dangerouslySetInnerHTML={{ __html: preacher }}></div>
           <AudioPlayer
             playlist={[{ url }]}
             controls={['playpause', 'spacer', 'progress']}
