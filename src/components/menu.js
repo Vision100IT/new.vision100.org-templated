@@ -12,7 +12,6 @@ const theme = {
 
 const List = styled('ul')`
   margin: 0;
-  margin-left: 100px;
   list-style: none;
   display: ${props => props.isVisible};
   li {
@@ -49,7 +48,10 @@ const Dropdown = styled('li')`
     color: green;
   }
   &:hover div {
-    display: grid;
+    display: block;
+    @media (min-width: 770px) {
+      display: grid;
+    }
   }
 `;
 

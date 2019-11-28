@@ -16,7 +16,8 @@ const Outer = styled('div')`
 const Wrapper = styled('div')`
   @media (max-width: 580px) {
     max-width: 90%;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: 1fr;
+    margin-left: 10px;
   }
   grid-column-start: 2;
   list-style: none;
