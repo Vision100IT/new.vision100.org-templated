@@ -21,7 +21,7 @@ const Wrapper = styled('div')`
   grid-column-start: 2;
   list-style: none;
   display: grid;
-  grid-template-columns: ${props => `repeat(${props.columns}, 1fr)`};
+  grid-template-columns: ${props => `200px repeat(${props.columns}, 200px)`};
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-bottom: 3px solid ${props => props.theme.colors.highlight};
   border-top: none;
@@ -84,7 +84,7 @@ const ExternalLink = styled('a')`
 export default function SubmenuBlock({submenu: {blurb, menus}}) {
   return (
     <Outer>
-      <Wrapper columns={menus.length >= 2 ? menus.length + 1 : 3}>
+      <Wrapper columns={menus.length >= 2 ? menus.length : 2}>
         <Blurb>{blurb}</Blurb>
         {menus.map(list => (
           <SubmenuList>
