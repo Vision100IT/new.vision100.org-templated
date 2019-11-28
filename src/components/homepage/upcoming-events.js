@@ -12,12 +12,13 @@ const Header = styled('h2')`
 
 export default function UpcomingEvents({ upcomingEventsData }) {
   const [upcomingEvents, setUpcomingEvents] = useState(upcomingEventsData);
-  const [upcomingEventsFetched, setUpcomingEventsFetched] = useState(Boolean(upcomingEvents));
+  const [upcomingEventsFetched, setUpcomingEventsFetched] = useState(Boolean(upcomingEventsData));
   
   useEffect(() => {
     if (upcomingEventsFetched === false) {
         fetchDrupalData('upcomingEvents', {}).then(response => {
             setUpcomingEvents(response);
+            console.log(response)
             setUpcomingEventsFetched(true);
         });
     } else {
@@ -32,11 +33,17 @@ export default function UpcomingEvents({ upcomingEventsData }) {
         ? upcomingEvents.map(event => {
           return (
             <React.Fragment>
-              {event.url ? <a href={event.url} rel="noreferrer noopener"><UpcomingEvent
+              {console.log(event)}
+              {event.url ? 
+              event.url.indexOf('http') === 0 || event.url.indexOf('www.')=== 0  ? <a href={event.url} rel="noreferrer noopener"><UpcomingEvent
                 key={event.title + event.startdate}
                 title={event.title}
                 startdate={event.startdate}
-              /></a> : <UpcomingEvent
+              /></a> : <Link to={event.url}><UpcomingEvent
+              key={event.title + event.startdate}
+              title={event.title}
+              startdate={event.startdate}
+            /></Link> : <UpcomingEvent
                   key={event.title + event.startdate}
                   title={event.title}
                   startdate={event.startdate}
