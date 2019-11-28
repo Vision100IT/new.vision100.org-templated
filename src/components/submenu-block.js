@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
@@ -82,26 +82,7 @@ font-size: 14px;
 line-height: 20px;
 padding: 5px 0;`;
 
-export default function SubmenuBlock({ submenu: { blurb, menus }, visible, updateOpenMenu }) {
-  const linkRef = useRef();
-
-  //close submenu when user changes routes
-  function handleLinkClick(e) {
-
-    if (linkRef.current.parentElement.contains(e.target) && e.target.href) {
-      e.target.click()
-      console.log(e.target.href)
-      updateOpenMenu(null);
-    }
-  }
-
-  useEffect(() => {
-    document.addEventListener('mousedown', handleLinkClick, false)
-    return () => {
-      document.removeEventListener('mousedown', handleLinkClick, false)
-    };
-  });
-
+export default function SubmenuBlock({ submenu: { blurb, menus }, visible }) {
   return (
     <Wrapper
       columns={menus.length >= 2 ? menus.length + 1 : 3}
@@ -109,12 +90,12 @@ export default function SubmenuBlock({ submenu: { blurb, menus }, visible, updat
     >
       <Blurb>{blurb}</Blurb>
       {menus.map(list => (
-        <SubmenuList ref={linkRef}>
+        <SubmenuList>
           <ul>
             <Header>{list.header}</Header>
             {list.items.map(item => (
               <li>
-                {item.externalLink === true ? <ExternalLink href={item.url} target="_blank" rel="noreferrer noopener" onClick={handleLinkClick}>{item.name}</ExternalLink> : <Anchor to={`/${item.url}`} onClick={handleLinkClick}>{item.name}</Anchor>}
+                {item.externalLink === true ? <ExternalLink href={item.url} target="_blank" rel="noreferrer noopener">{item.name}</ExternalLink> : <Anchor to={`/${item.url}`}>{item.name}</Anchor>}
               </li>
             ))}
           </ul>
