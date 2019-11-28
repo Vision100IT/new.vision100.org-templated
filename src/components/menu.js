@@ -21,6 +21,8 @@ const List = styled('ul')`
       color: #777;
     }
   }
+  text-align: center;
+  padding-left: 0;
   @media (min-width: 770px) {
     display: flex;
   }
