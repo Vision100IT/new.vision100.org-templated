@@ -46,10 +46,12 @@ const Dropdown = styled('li')`
   div {
     display: none;
   }
-  a:hover {
+  a:hover,
+  a:focus-within {
     color: green;
   }
-  &:hover div {
+  &:hover div,
+  &:focus-within div {
     display: block;
     @media (min-width: 770px) {
       display: grid;
@@ -67,7 +69,7 @@ export default function Menu({items, isVisible}) {
           if (submenu) {
             return (
               <Dropdown>
-                <a>
+                <a href="#">
                   {title}
                   <Caret />
                 </a>
