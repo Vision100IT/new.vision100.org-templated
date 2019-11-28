@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { ThemeProvider } from 'emotion-theming';
+import React from 'react';
+import {ThemeProvider} from 'emotion-theming';
 import styled from '@emotion/styled';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import SubmenuBlock from './submenu-block';
 
 const theme = {
@@ -12,7 +12,6 @@ const theme = {
 
 const List = styled('ul')`
   margin: 0;
-  margin-left: 100px;
   list-style: none;
   display: ${props => props.isVisible};
   li {
@@ -22,6 +21,8 @@ const List = styled('ul')`
       color: #777;
     }
   }
+  text-align: center;
+  padding-left: 0;
   @media (min-width: 770px) {
     display: flex;
   }
@@ -40,35 +41,43 @@ const Caret = styled('span')`
   cursor: pointer;
 `;
 
-export default function Menu({ items, isVisible }) {
-  const [openMenu, updateOpenMenu] = useState(null);
+const Dropdown = styled('li')`
+  cursor: pointer;
+  div {
+    display: none;
+  }
+  a:hover {
+    color: green;
+  }
+  &:hover div {
+    display: block;
+    @media (min-width: 770px) {
+      display: grid;
+    }
+  }
+`;
+
+export default function Menu({items, isVisible}) {
   return (
     <ThemeProvider theme={theme}>
       <List isVisible={isVisible ? 'block' : 'none'}>
         {items.map(item => {
-          const { title, submenu, slug, name } = item;
+          const {title, submenu, slug, name} = item;
 
           if (submenu) {
             return (
-              <li>
-                <a
-                  title={title}
-                  style={{
-                    cursor: 'pointer'
-                  }}
-                  onClick={() =>
-                    updateOpenMenu(openMenu === title ? null : title)}
-                >
+              <Dropdown>
+                <a>
                   {title}
                   <Caret />
                 </a>
-                <SubmenuBlock submenu={submenu} visible={openMenu === title} />
-              </li>
+                <SubmenuBlock submenu={submenu} />
+              </Dropdown>
             );
           }
 
           return (
-            <li>
+            <li key={slug}>
               <Link to={`/${slug}`}>{name}</Link>
             </li>
           );
