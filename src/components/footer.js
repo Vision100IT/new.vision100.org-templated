@@ -9,11 +9,12 @@ import {
 } from 'react-icons/io';
 
 const icon = css`
-  stroke: 'white';
-  stroke-width: '20px';
-  fill: 'none';
-  width: '2em';
-  height: '2em';
+  stroke: white;
+  stroke-width: 20px;
+  fill: none;
+  width: 2em;
+  height: 2em;
+  fill: #f0f0f0;
   @media (min-width: 700px) {
     margin-bottom: '20px';
   }
@@ -33,7 +34,6 @@ const Grid = styled('div')`
 
 const MetaGrid = styled('div')`
   display: grid;
-  height: 65px;
   grid-template-columns: 1fr 1fr;
   background-color: #222222;
   padding: 0 10vw;
@@ -41,7 +41,7 @@ const MetaGrid = styled('div')`
 `;
 
 const centered = css`
-  text-align: 'center';
+  text-align: center;
 `;
 
 export default function Footer() {
@@ -90,13 +90,13 @@ export default function Footer() {
         </div>
         <div css={{textAlign: 'right'}}>
           <a href="https://www.facebook.com/NewFrontDoorIT/">
-            <IoLogoFacebook style={{fill: '#f0f0f0'}} />
+            <IoLogoFacebook css={icon} />
           </a>
           <a href="https://twitter.com/NewFrontDoorIT">
-            <IoLogoTwitter style={{fill: '#f0f0f0'}} />
+            <IoLogoTwitter css={icon} />
           </a>
           <a href="mailto:contactus@newfrontdoor.org">
-            <IoIosMail style={{fill: '#f0f0f0'}} />
+            <IoIosMail css={icon} />
           </a>
         </div>
       </MetaGrid>
