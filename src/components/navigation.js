@@ -8,7 +8,7 @@ const menudata = require('../sample-data/menu-items.json');
 
 const Header = styled('header')`
   display: flex;
-  width: 100vw;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   justify-content: space-around;
