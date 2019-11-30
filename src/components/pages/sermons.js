@@ -13,6 +13,10 @@ const Grid = styled.div`
   justify-content: ${props =>
     props.justify ? props.justify : 'space-between'};
   gap: ${props => (props.gap ? props.gap : '')};
+  @media (max-width: 700px) {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-gap: 1em;
+  }
 `;
 
 const Alt = styled.div`
