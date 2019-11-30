@@ -1,12 +1,12 @@
 {
-  "name": "summerleas-template",
+  "name": "new.vision100.org",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.10",
     "@mdx-js/react": "^1.5.1",
-    "@newfrontdoor/calendar": "^2.1.1",
+    "@newfrontdoor/calendar": "^2.2.0",
     "@react-google-maps/api": "^1.6.0",
     "embla-carousel-react": "^1.0.3",
     "emotion-theming": "^10.0.10",
