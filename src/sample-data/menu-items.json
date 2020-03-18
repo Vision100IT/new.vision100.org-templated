@@ -76,6 +76,10 @@
             "header": "",
             "items": [
               {
+                "name": "COVID-19 Resources",
+                "url": "COVID19Resources"
+              },
+              {
                 "name": "New Front Door IT",
                 "externalLink": true,
                 "url": "https://newfrontdoor.org/"
