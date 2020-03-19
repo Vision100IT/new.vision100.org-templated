@@ -90,8 +90,25 @@
       }
     },
     {
-      "slug": "Support",
-      "name": "Support"
+      "title": "Support",
+      "submenu": {
+        "blurb": "Find out ways that you can support us...",
+        "menus": [
+          {
+            "header": "",
+            "items": [
+              {
+                "name": "Fundraising Appeal",
+                "url": "fundraisingappeal"
+              },
+              {
+                "name": "Support",
+                "url": "support"
+              }
+            ]
+          }
+        ]
+      }
     }
   ]
 }
