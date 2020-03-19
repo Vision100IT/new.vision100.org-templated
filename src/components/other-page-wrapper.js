@@ -12,6 +12,7 @@ import ContactUs from './pages/contact-us';
 import Page from './pages/api-page';
 import Newsletter from './pages/newsletter-page';
 import Calendar from './pages/calendar-page';
+import Pledge from './pages/pledge';
 
 export default function OtherPageWrapper({ globalSermons, setGlobalSermons, pagesData, newslettersData }) {
   return pagesData ? (
@@ -48,6 +49,7 @@ export default function OtherPageWrapper({ globalSermons, setGlobalSermons, page
         />
         <Route exact path="/OurPeople" component={OurPeople} />
         <Route exact path="/Contact" component={ContactUs} />
+        <Route exact path="/Pledge" component={Pledge} />
         <Route exact path="/Newsletter" render={({ }) => (
           <Newsletter newslettersData={newslettersData} />
         )}
