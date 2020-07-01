@@ -34,26 +34,32 @@ export default function SermonBlock({
     series_id,
     sermonseries,
     series_img,
-    text
+    text,
+    body
   }
 }) {
   return (
-    <OuterGrid>
-      <img src={sermon_img ? sermon_img : series_img ? series_img : SVGLogo} style={{ width: '100%' }} />
-      <Grid>
-        <div>Date Preached: {datepreached}</div>
-        <div>Preacher: {preacher}</div>
-        <div>Sermon: </div>
-        <AudioPlayer
-          playlist={[{ url }]}
-          controls={['playpause', 'spacer', 'progress']}
-        />
-        <a href={url}>Download</a>
-        <div>
-          Sermon Series: <Link to={'/series/' + series_id}>{sermonseries}</Link>
-        </div>
-        {text ? <div>Bible Passage(s): {text}</div> : ''}
-      </Grid>
-    </OuterGrid>
+    <>
+      <OuterGrid>
+        <img src={sermon_img ? sermon_img : series_img ? series_img : SVGLogo} style={{ width: '100%' }} />
+        <Grid>
+          <div>Date Preached: {datepreached}</div>
+          <div>Preacher: {preacher}</div>
+          <div>Sermon: </div>
+          <AudioPlayer
+            playlist={[{ url }]}
+            controls={['playpause', 'spacer', 'progress']}
+          />
+          <a href={url}>Download</a>
+          <div>
+            Sermon Series: <Link to={'/series/' + series_id}>{sermonseries}</Link>
+          </div>
+          {text ? <div>Bible Passage(s): {text}</div> : ''}
+
+
+        </Grid>
+      </OuterGrid>
+      {body ? <div dangerouslySetInnerHTML={{ __html: body }} /> : ''}
+    </>
   );
 }
