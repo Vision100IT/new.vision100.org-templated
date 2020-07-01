@@ -59,16 +59,16 @@
             "header": "",
             "items": [
               {
+                "name": "July 2020 Newsletter",
+                "url": "newsletterJuly2020"
+              },
+              {
                 "name": "Newsletter",
                 "url": "Newsletter"
               },
               {
                 "name": "Podcast",
                 "url": "Podcast"
-              },
-              {
-                "name": "Articles",
-                "url": "Articles"
               }
             ]
           },
@@ -78,6 +78,10 @@
               {
                 "name": "COVID-19 Resources",
                 "url": "COVID19Resources"
+              },
+              {
+                "name": "Articles",
+                "url": "Articles"
               },
               {
                 "name": "New Front Door IT",
