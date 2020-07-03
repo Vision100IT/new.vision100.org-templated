@@ -102,10 +102,6 @@
             "header": "",
             "items": [
               {
-                "name": "Fundraising Appeal",
-                "url": "fundraisingappeal"
-              },
-              {
                 "name": "Support",
                 "url": "support"
               }
