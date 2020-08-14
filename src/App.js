@@ -5,7 +5,7 @@ import Navigation from './components/navigation';
 import HomePageWrapper from './components/homepage/home-page-wrapper';
 import OtherPageWrapper from './components/other-page-wrapper';
 import Footer from './components/footer';
-import {fetchDrupalData} from './utils/fetch-functions';
+import {fetchDrupalData, fetchSanityData} from './utils/fetch-functions';
 
 require('typeface-lato');
 require('typeface-roboto-slab');
@@ -60,6 +60,35 @@ const globalStyles = css`
   }
 `;
 
+const sanityQuery = `*[_type == "page"][0] {
+  ...,
+  body[]{
+    ...,
+    _type == 'reference' => @-> {
+      ...,
+      blocks[] {
+        ...,
+        _type == 'reference' => @ -> {
+          ...,
+          'image': mainImage.asset->url,
+          'header': title,
+          'link': slug.current
+        }
+      }
+    },
+    markDefs[] {
+      ...,
+      _type == 'internalLink' => {
+          'slug': @.reference->slug.current
+      },
+      _type == 'asset' => {
+          'url': @.reference->file.asset->url
+      }
+    }
+  },
+  'mainImage': mainImage.asset->url
+}`
+
 export default function App() {
   const [globalSermons, setGlobalSermons] = useState(null);
   const [pagesData, setpagesData] = useState();
@@ -68,6 +97,8 @@ export default function App() {
   const [newslettersData, setNewslettersData] = useState();
   const [upcomingEventsDataFetched, setUpcomingEventDataFetched] = useState(false);
   const [upcomingEventsData, setUpcomingEventsData] = useState(null);
+  const [sanityPages, setSanityPages] = useState();
+  const [sanityPagesFetched, setSanityPagesFetched] = useState(false);
 
 
   useEffect(() => {
@@ -101,7 +132,16 @@ export default function App() {
     }
   }, [upcomingEventsDataFetched, upcomingEventsData]);
 
-  return pagesFetched === true ? (
+  useEffect(() => {
+    if (sanityPagesFetched === false) {
+      fetchSanityData(sanityQuery).then(response => {
+        setSanityPages(response);
+        setSanityPagesFetched(true);
+      });
+    }
+  }, [sanityPagesFetched, sanityPages]);
+
+  return pagesFetched === true && sanityPagesFetched === true ? (
     <Router>
       <Global styles={globalStyles} />
       <Route path="*" component={Navigation} />
@@ -125,6 +165,7 @@ export default function App() {
             setGlobalSermons={setGlobalSermons}
             pagesData={pagesData}
             newslettersData={newslettersData}
+            sanityPagesData={sanityPages}
           />
         )}
       />

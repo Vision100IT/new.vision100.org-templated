@@ -1,4 +1,5 @@
 import ky from 'ky-universal';
+import {fetchQuery} from '../lib/sanity'
 
 // CRCK api used as a placeholder for sermons
 // Change this URL when the API is set up for the new website
@@ -42,4 +43,9 @@ export async function fetchDrupalData(type, obj) {
     credentials: 'omit'
   }).json();
   return result;
+}
+
+export async function fetchSanityData(query){
+  const results = await fetchQuery(query);
+  return results;
 }

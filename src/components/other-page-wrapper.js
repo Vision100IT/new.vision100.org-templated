@@ -13,8 +13,10 @@ import Page from './pages/api-page';
 import Newsletter from './pages/newsletter-page';
 import Calendar from './pages/calendar-page';
 import Pledge from './pages/pledge';
+import SanityPage from './pages/sanity-page';
+import MLCRegistration from './pages/mlc-registration';
 
-export default function OtherPageWrapper({ globalSermons, setGlobalSermons, pagesData, newslettersData }) {
+export default function OtherPageWrapper({ globalSermons, setGlobalSermons, pagesData, newslettersData, sanityPagesData }) {
   return pagesData ? (
     <section>
       <Switch>
@@ -58,7 +60,23 @@ export default function OtherPageWrapper({ globalSermons, setGlobalSermons, page
           <Calendar />
         )}
         />
-
+        <Route
+          path="/MLC/register"
+          render={({ match }) => (
+            <MLCRegistration />
+          )}
+        />
+        {/*Sanity Registration Forms
+        <Route
+          path="/register/:slug"
+          render={({ match }) => (
+            <SanityPage
+              slug={match.params.slug}
+              sanityPagesData={sanityPagesData ? sanityPagesData : undefined}
+            />
+          )}
+        />
+*/}
         <Route
           path="/:slug"
           render={({ match }) => (
