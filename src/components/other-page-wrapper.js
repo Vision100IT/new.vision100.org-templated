@@ -15,6 +15,7 @@ import Calendar from './pages/calendar-page';
 import Pledge from './pages/pledge';
 import SanityPage from './pages/sanity-page';
 import MLCRegistration from './pages/mlc-registration';
+import CombinedMTSTraining from './pages/combined-mts-training'
 
 export default function OtherPageWrapper({ globalSermons, setGlobalSermons, pagesData, newslettersData, sanityPagesData }) {
   return pagesData ? (
@@ -59,6 +60,12 @@ export default function OtherPageWrapper({ globalSermons, setGlobalSermons, page
         <Route exact path="/Calendar" render={({ }) => (
           <Calendar />
         )}
+        />
+        <Route
+          path="/mtstraining/register"
+          render={({ match }) => (
+            <CombinedMTSTraining />
+          )}
         />
         <Route
           path="/MLC/register"
