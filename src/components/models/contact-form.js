@@ -13,6 +13,9 @@ const onSubmit = async values => {
     form.append("submission[data][3][values][0]", values["subject"].replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
   }
   form.append("submission[data][4][values][0]", values["message"].replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+  if(values["bulletin"]){
+    form.append("submission[data][5][values][0]", "yes");
+  }
   await sleep(300);
 
   postToWebform(form, function (data) {
@@ -38,6 +41,10 @@ const Input = styled.input`
   border-radius: 4px;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+`;
+
+const Checkbox = styled.input`
+  display: inline-block;
 `;
 
 const Req = styled.span`
@@ -134,6 +141,27 @@ export default function ContactForm() {
                             cols="60"
                             rows="5"
                           />
+                        </div>
+                        {meta.error && meta.touched && (
+                          <span>{meta.error}</span>
+                        )}
+                      </div>
+                    )}
+                  </Field>
+                </FormGroup>
+                <FormGroup>
+                  <Field name="bulletin" type="checkbox">
+                    {({ input, meta }) => (
+                      <div>
+                         <label><Checkbox
+                            {...input}
+                            type="checkbox"
+                          />
+                        &nbsp;
+                        I am happy to be added to the Vision 100 Network monthly email bulletin to keep in touch with what is happening within the network
+                        </label>
+                        <div>
+                         
                         </div>
                         {meta.error && meta.touched && (
                           <span>{meta.error}</span>

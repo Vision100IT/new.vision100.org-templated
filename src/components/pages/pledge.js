@@ -31,7 +31,7 @@ export default function Pledge() {
 
   return (
     <section>
-      <TitleBreadcrumb title="Contact Us" breadcrumbs={[['Home', '/']]} />
+      <TitleBreadcrumb title="Pledge to Sponsor Us Financially" breadcrumbs={[['Home', '/']]} />
       <ContentWrapper>
         <p>
           The Vision 100 Network exists to gather and resource a network of churches and church leaders who are committed to raising up the next generation of church leaders in order to plant evangelistic, church-planting churches. You can support this vision by partering financially with us.
