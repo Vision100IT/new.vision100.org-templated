@@ -55,7 +55,8 @@ class RegistrationFormGenericPaypal extends Component {
       paymentMethod: "",
       totalAmount: 0,
       otherRegistrations: 0,
-      discountCode: ""
+      discountCode: "",
+      bulletin: false
 
     }
 
@@ -94,7 +95,8 @@ class RegistrationFormGenericPaypal extends Component {
       paymentMethod: "",
       totalAmount: 0,
       otherRegistrations: 0,
-      discountCode: ""
+      discountCode: "",
+      bulletin: false
     })
   }
 
@@ -261,6 +263,10 @@ class RegistrationFormGenericPaypal extends Component {
       //total cost
       form.append("submission[data][41][values][0]", totalAmount);
 
+      if(this.state.bulletin === true){
+        form.append("submission[data][47][values][0]", "yes");
+      }
+
       var that = this;
       postToWebform(form, function (data) {
         that.setState({ submissionID: data.sid })
@@ -400,7 +406,12 @@ class RegistrationFormGenericPaypal extends Component {
               <option value="paypal">Paypal or Credit Card/Debit Card</option>
               <option value="directDeposit">Direct Deposit</option>
               <option value="cheque">Cheque</option>
-            </select><br /><br />
+            </select><br/><br/>
+            <p><strong>Monthly Bulletin</strong></p>
+            <label><input type="checkbox" name="bulletin" value={this.state.bulletin} onChange={this.handleChange.bind(this)} />
+                            &nbsp;I am happy to be added to the Vision 100 Network monthly email bulletin to keep in touch with what is happening within the network</label><br />            
+            <br /><br />
+
 
             <p><em>Your privacy is important to us. Your information will be kept secure and used only for the purposes of the ministry of the Vision 100 Network. For our privacy policy, contact info@vision100.org</em></p>
             <input type="submit" value="Register" className="btn btn-primary" />

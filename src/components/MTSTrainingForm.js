@@ -39,6 +39,7 @@ class MTSTrainingForm extends Component {
       formValid: false,
       formSubmitted: false,
       paymentMethod: "directDebit",
+      bulletin: false
     }
 
     this.resetRegistrationForm = this.resetRegistrationForm.bind(this);
@@ -62,6 +63,7 @@ class MTSTrainingForm extends Component {
       formValid: false,
       formSubmitted: false,
       paymentMethod: "directDebit",
+      bulletin: false
     })
   }
 
@@ -138,6 +140,9 @@ class MTSTrainingForm extends Component {
 
       form.append("submission[data][9][values][0]", escape(this.state.ableToFinanciallyContribute).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
 
+      if(this.state.bulletin === true){
+        form.append("submission[data][12][values][0]", "yes");
+      }
 
       var that = this;
       postToWebform(form, function (data) {
@@ -193,7 +198,10 @@ class MTSTrainingForm extends Component {
             <label><input type="radio" name="ableToFinanciallyContribute" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.ableToFinanciallyContribute === "yes"} /> Yes &nbsp;</label><br />
             <label><input type="radio" name="ableToFinanciallyContribute" value="no" onChange={this.handleChange.bind(this)} checked={this.state.ableToFinanciallyContribute === "no"} /> No &nbsp;</label><br />
             <br />
-
+            <p><strong>Monthly Bulletin</strong></p>
+            <label><input type="checkbox" name="bulletin" value={this.state.bulletin} onChange={this.handleChange.bind(this)} />
+                            &nbsp;I am happy to be added to the Vision 100 Network monthly email bulletin to keep in touch with what is happening within the network</label><br />            
+            <br /><br />
 
             <p><em>Your privacy is important to us. Your information will be kept secure and used only for the purposes of the ministry of the Vision 100 Network. For our privacy policy, contact info@vision100.org</em></p>
             <input type="submit" value="Register" className="btn btn-primary" />

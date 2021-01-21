@@ -43,6 +43,9 @@ const onSubmit = async values => {
       form.append("submission[data][6][values][0]", 200);
       break;
   }
+  if(values["bulletin"]){
+    form.append("submission[data][8][values][0]", "yes");
+  }
 
   await sleep(300);
 
@@ -80,6 +83,10 @@ const Input = styled.input`
   border-radius: 4px;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+`;
+
+const Checkbox = styled.input`
+  display: inline-block;
 `;
 
 const Req = styled.span`
@@ -316,6 +323,28 @@ export default function ContactForm() {
                       )}
                     </Field>
                   </Condition>
+                </FormGroup>
+                <h3>Monthly Bulletin</h3>
+                <FormGroup>
+                  <Field name="bulletin" type="checkbox">
+                    {({ input, meta }) => (
+                      <div>
+                         <label><Checkbox
+                            {...input}
+                            type="checkbox"
+                          />
+                        &nbsp;
+                        I am happy to be added to the Vision 100 Network monthly email bulletin to keep in touch with what is happening within the network
+                        </label>
+                        <div>
+                         
+                        </div>
+                        {meta.error && meta.touched && (
+                          <span>{meta.error}</span>
+                        )}
+                      </div>
+                    )}
+                  </Field>
                 </FormGroup>
                 <div>
                   <button
