@@ -1,5 +1,4 @@
 import React, { useReducer } from 'react';
-import styled from '@emotion/styled';
 import PledgeForm from '../models/pledge-form';
 import ContentWrapper from '../content-wrapper';
 import TitleBreadcrumb from './title-breadcrumb';

@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React from 'react';
+//import React from 'react';
 import BlockContent from '@sanity/block-content-to-react';
 import { Styled, jsx } from 'theme-ui';
 import urlFor from '../lib/sanityImg';
@@ -25,7 +25,7 @@ AnchorSerializer.propTypes = {
 };
 
 const ImageSerializer = ({ node }) => {
-  return <img src={urlFor(node).url()} />;
+  return <img src={urlFor(node).url()} alt=""/>;
 };
 
 ImageSerializer.propTypes = {

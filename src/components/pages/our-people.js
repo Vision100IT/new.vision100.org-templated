@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import Person from '../models/person';
 import Male from '../../assets/img/people/Male.png';
-import Female from '../../assets/img/people/Female.png';
+//import Female from '../../assets/img/people/Female.png';
 import ContentWrapper from '../content-wrapper';
 import TitleBreadcrumb from './title-breadcrumb';
 

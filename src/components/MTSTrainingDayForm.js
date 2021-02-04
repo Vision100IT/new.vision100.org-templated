@@ -15,10 +15,10 @@ display: block;
 width: 50%;
 `
 
-const webformUUID = "316ca457-33ef-4d72-8394-ecebf768300c"
+const webformUUID = "f0e8114b-0d3a-4c40-92e0-055fcce7eb1b"
 
-const discountCost = 10;
-const regularCost = 15;
+const discountCost = 35;
+const regularCost = 45;
 
 
 class RegistrationFormGenericPaypal extends Component {
@@ -56,7 +56,8 @@ class RegistrationFormGenericPaypal extends Component {
       totalAmount: 0,
       otherRegistrations: 0,
       discountCode: "",
-      bulletin: false
+      bulletin: false,
+      attendedBefore: "no"
 
     }
 
@@ -96,7 +97,8 @@ class RegistrationFormGenericPaypal extends Component {
       totalAmount: 0,
       otherRegistrations: 0,
       discountCode: "",
-      bulletin: false
+      bulletin: false,
+      attendedBefore: "no"
     })
   }
 
@@ -166,10 +168,7 @@ class RegistrationFormGenericPaypal extends Component {
     if (validator.isEmpty(this.state.dietaryRequirements)) {
       errorMessage += "Please specify any dietary requirements.\n";
     }
-    //at least 1 location selected
-    if (!this.state.kingston && !this.state.northWest && !this.state.launceston) {
-      errorMessage += "Please select the location(s) that you will be attending.\n";
-    }
+
     //payment method
     if (this.state.paymentMethod === "") {
       errorMessage += "Please select a payment method.\n";
@@ -188,7 +187,7 @@ class RegistrationFormGenericPaypal extends Component {
       if (this.state.discountCode && this.state.discountCode.toLowerCase() === "v100 cost") {
         costPerRegistration = discountCost
       }
-      switch (this.state.whoRegistering) { //eslint-disable-line
+      switch (this.state.whoRegistering) {//eslint-disable-line
         case "justme":
           registrationCost += costPerRegistration;
           break;
@@ -213,58 +212,48 @@ class RegistrationFormGenericPaypal extends Component {
       //whoRegistering
       form.append("submission[data][4][values][0]", this.state.whoRegistering);
       //otherRegistrations
-      form.append("submission[data][8][values][0]", this.state.otherRegistrations);
+      form.append("submission[data][7][values][0]", this.state.otherRegistrations);
       //myChurch
-      form.append("submission[data][6][values][0]", this.state.otherRegistrations);
+      form.append("submission[data][6][values][0]", this.state.myChurch);
       //person1 to 5 name, email and church
-      form.append("submission[data][10][values][0]", escape(this.state.person1Name).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
-      form.append("submission[data][11][values][0]", escape(this.state.person1Email).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
-      form.append("submission[data][12][values][0]", escape(this.state.person1Church).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][9][values][0]", escape(this.state.person1Name).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][10][values][0]", escape(this.state.person1Email).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][11][values][0]", escape(this.state.person1Church).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
 
-      form.append("submission[data][15][values][0]", escape(this.state.person2Name).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
-      form.append("submission[data][16][values][0]", escape(this.state.person2Email).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
-      form.append("submission[data][17][values][0]", escape(this.state.person2Church).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][13][values][0]", escape(this.state.person2Name).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][14][values][0]", escape(this.state.person2Email).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][15][values][0]", escape(this.state.person2Church).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
 
-      form.append("submission[data][20][values][0]", escape(this.state.person3Name).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
-      form.append("submission[data][21][values][0]", escape(this.state.person3Email).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
-      form.append("submission[data][22][values][0]", escape(this.state.person3Church).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][17][values][0]", escape(this.state.person3Name).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][18][values][0]", escape(this.state.person3Email).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][19][values][0]", escape(this.state.person3Church).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
 
-      form.append("submission[data][25][values][0]", escape(this.state.person4Name).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
-      form.append("submission[data][26][values][0]", escape(this.state.person4Email).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
-      form.append("submission[data][27][values][0]", escape(this.state.person4Church).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][21][values][0]", escape(this.state.person4Name).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][22][values][0]", escape(this.state.person4Email).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][23][values][0]", escape(this.state.person4Church).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
 
-      form.append("submission[data][30][values][0]", escape(this.state.person5Name).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
-      form.append("submission[data][31][values][0]", escape(this.state.person5Email).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
-      form.append("submission[data][32][values][0]", escape(this.state.person5Church).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
-      //locations
-      let i = 0
-      if (this.state.kingston) {
-        form.append("submission[data][46][values][" + i + "0]", 'kingston');
-        i++;
-      }
-      if (this.state.northWest) {
-        form.append("submission[data][46][values][" + i + "0]", 'northWest');
-        i++;
-      }
-      if (this.state.launceston) {
-        form.append("submission[data][46][values][" + i + "0]", 'launceston');
-        i++;
-      }
+      form.append("submission[data][25][values][0]", escape(this.state.person5Name).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][26][values][0]", escape(this.state.person5Email).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][27][values][0]", escape(this.state.person5Church).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+
       //dietaryreqs 
-      form.append("submission[data][34][values][0]", escape(this.state.dietaryRequirements).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][29][values][0]", escape(this.state.dietaryRequirements).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
       //payment method
-      form.append("submission[data][38][values][0]", this.state.paymentMethod);
+      form.append("submission[data][33][values][0]", this.state.paymentMethod);
       //Registration amount
-      form.append("submission[data][40][values][0]", registrationCost);
+      form.append("submission[data][37][values][0]", registrationCost);
       //discount code
-      form.append("submission[data][35][values][0]", escape(this.state.discountCode).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][30][values][0]", escape(this.state.discountCode).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
       //support amount
-      form.append("submission[data][37][values][0]", this.state.donationAmount);
-      //total cost
-      form.append("submission[data][41][values][0]", totalAmount);
+      form.append("submission[data][32][values][0]", this.state.donationAmount);
+      //total amount
+      form.append("submission[data][34][values][0]", totalAmount);
+
+      //attended MTS before
+      form.append("submission[data][36][values][0]", this.state.attendedBefore);
 
       if(this.state.bulletin === true){
-        form.append("submission[data][47][values][0]", "yes");
+        form.append("submission[data][35][values][0]", "yes");
       }
 
       var that = this;
@@ -313,6 +302,10 @@ class RegistrationFormGenericPaypal extends Component {
                 <legend>My Details</legend>
                 <label><strong>Church</strong> </label><br />
                 <input type="text" name="myChurch" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.myChurch} /><br /><br />
+                <label><strong>Attended an MTS Training Day Before?</strong> {requiredField}</label><br /><br/>
+            <label><input type="radio" name="attendedBefore" value="no" onChange={this.handleChange.bind(this)} checked={this.state.attendedBefore === "no"} /> This is my first time &nbsp;</label><br />
+            <label><input type="radio" name="attendedBefore" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.attendedBefore === "yes"} />  I have been to an MTS Training Day before &nbsp;</label><br /><br />
+            
               </fieldset>
               <br />
             </> : ''}
@@ -375,14 +368,8 @@ class RegistrationFormGenericPaypal extends Component {
               </fieldset>
               <br />
             </> : ''}
-            <label><strong>From which of the following locations are you planning to attend the conference</strong> {requiredField}</label><br />
-            <label><input type="checkbox" name="kingston" value={this.state.kingston} onChange={this.handleChange.bind(this)} />
-                            &nbsp;Christian Reformed Church of Kingston</label><br />
-            <label><input type="checkbox" name="northWest" value={this.state.northWest} onChange={this.handleChange.bind(this)} />
-                            &nbsp;North west live stream (location TBA)</label><br />
-            <label><input type="checkbox" name="launceston" value={this.state.launceston} onChange={this.handleChange.bind(this)} />
-                            &nbsp;Riverbank Church in Launceston</label><br /><br />
-
+            
+            <br/>
             <label><strong>Please specify any dietary requirements here</strong></label><br />
 
             <TextArea className="form-control" name="dietaryRequirements" rows="7" onChange={this.handleChange.bind(this)} value={this.state.dietaryRequirements} />
@@ -440,10 +427,10 @@ class RegistrationFormGenericPaypal extends Component {
     var formSubmitted;
     if (this.state.formSubmitted) {
       formSubmitted = (<div>
-        {this.state.submissionID && this.state.paymentMethod === "paypal" ? <GenericPaypal sid={this.state.submissionID} totalCost={this.state.totalAmount} eventName="MLC" /> :
+        {this.state.submissionID && this.state.paymentMethod === "paypal" ? <GenericPaypal sid={this.state.submissionID} totalCost={this.state.totalAmount} eventName="MTS" /> :
           <>
             <p>
-              Thank you for your registering for the Ministry Leaders Conference 2020!
+              Thank you for your registering for the MTS Training Day March 2021.
               You will receive more information about the conference a week before the event.
               </p>
 
@@ -456,7 +443,7 @@ class RegistrationFormGenericPaypal extends Component {
               Account Name: Vision 100 Network<br />
               BSB: 087 007<br />
               Account No: 548757295<br />
-              Reference: MLC {this.state.submissionID}<br />
+              Reference: MTS {this.state.submissionID}<br />
             </p>
             <p>
               <strong>Cheques:</strong><br /><br />

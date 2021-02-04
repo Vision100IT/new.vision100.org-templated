@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import styled from '@emotion/styled';
 import { fetchDrupalData } from '../../utils/fetch-functions';
 import ContentWrapper from '../content-wrapper';
 import TitleBreadcrumb from './title-breadcrumb';
@@ -14,7 +13,7 @@ export default function Page({ slug, pageData }) {
         if (dataFetched === false) {
             console.log(slug.toLowerCase())
             console.log(pageData)
-            fetchDrupalData('page', { ['page_title']: slug }).then(response => {
+            fetchDrupalData('page', { ['page_title']: slug }).then(response => {//eslint-disable-line
                 if (response.length > 0) {
                     setData(response[0]);
                 }

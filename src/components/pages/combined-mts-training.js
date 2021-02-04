@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import SanityBlock from '../block-text-serializer';
+import React from 'react';
 
 import ContentWrapper from '../content-wrapper';
 import TitleBreadcrumb from './title-breadcrumb';

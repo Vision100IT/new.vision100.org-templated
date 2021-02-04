@@ -13,9 +13,11 @@ import Page from './pages/api-page';
 import Newsletter from './pages/newsletter-page';
 import Calendar from './pages/calendar-page';
 import Pledge from './pages/pledge';
-import SanityPage from './pages/sanity-page';
+//import SanityPage from './pages/sanity-page';
 import MLCRegistration from './pages/mlc-registration';
+import MTSTrainingDay from './pages/mts-training-day';
 import CombinedMTSTraining from './pages/combined-mts-training'
+import PaypalReturn from './pages/paypal-return';
 
 export default function OtherPageWrapper({ globalSermons, setGlobalSermons, pagesData, newslettersData, sanityPagesData }) {
   return pagesData ? (
@@ -53,11 +55,11 @@ export default function OtherPageWrapper({ globalSermons, setGlobalSermons, page
         <Route exact path="/OurPeople" component={OurPeople} />
         <Route exact path="/Contact" component={ContactUs} />
         <Route exact path="/Pledge" component={Pledge} />
-        <Route exact path="/Newsletter" render={({ }) => (
+        <Route exact path="/Newsletter" render={({ }) => ( //eslint-disable-line
           <Newsletter newslettersData={newslettersData} />
         )}
         />
-        <Route exact path="/Calendar" render={({ }) => (
+        <Route exact path="/Calendar" render={({ }) => (//eslint-disable-line
           <Calendar />
         )}
         />
@@ -65,6 +67,12 @@ export default function OtherPageWrapper({ globalSermons, setGlobalSermons, page
           path="/mtstraining/register"
           render={({ match }) => (
             <CombinedMTSTraining />
+          )}
+        />
+        <Route
+          path="/mtstrainingday/register"
+          render={({ match }) => (
+            <MTSTrainingDay />
           )}
         />
         <Route
@@ -84,6 +92,14 @@ export default function OtherPageWrapper({ globalSermons, setGlobalSermons, page
           )}
         />
 */}
+        <Route
+          path="/PaypalReturn/:sid"
+          render={({ match }) => (
+            <PaypalReturn
+              sid={match.params.sid}
+            />
+          )}
+        />
         <Route
           path="/:slug"
           render={({ match }) => (

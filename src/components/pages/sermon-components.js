@@ -38,7 +38,8 @@ export function LatestSermon({ latestSermon }) {
   return (
     <section>
       <Link to={`/sermon/${latestSermon.nid}`}>
-        <img src={latestSermon.sermon_img ? latestSermon.sermon_img : latestSermon.series_img ? latestSermon.series_img : SVGLogo} style={{ width: '100%' }} alt={latestSermon.sermonseries} style={{ width: "100%" }} />
+      { //eslint-disable-next-line 
+      }<img src={latestSermon.sermon_img ? latestSermon.sermon_img : latestSermon.series_img ? latestSermon.series_img : SVGLogo} style={{ width: '100%' }} alt={latestSermon.sermonseries} style={{ width: "100%" }} />
       </Link>
       <Link
         to={'/series/' + latestSermon.series_id}

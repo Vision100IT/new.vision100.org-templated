@@ -10,7 +10,7 @@ const client = drupalClient(
   'https://api.vision100.org/api/views/all_events_api'
 );
 
-export default function CalendarPage({}) {
+export default function CalendarPage({}) {//eslint-disable-line
   const history = useHistory();
   function handleNav(url) {
     if (url.indexOf('http') === 0 || url.indexOf('www.') === 0) {

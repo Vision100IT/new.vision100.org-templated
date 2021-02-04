@@ -41,7 +41,7 @@ export default function SermonBlock({
   return (
     <>
       <OuterGrid>
-        <img src={sermon_img ? sermon_img : series_img ? series_img : SVGLogo} style={{ width: '100%' }} />
+        <img src={sermon_img ? sermon_img : series_img ? series_img : SVGLogo} style={{ width: '100%' }} alt="" />
         <Grid>
           <div>Date Preached: {datepreached}</div>
           <div>Preacher: {preacher}</div>

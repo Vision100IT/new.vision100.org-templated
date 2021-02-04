@@ -53,7 +53,7 @@ const DotBase = styled.button`
   align-items: center;
 `;
 
-const Dot = styled(DotBase)`
+/*const Dot = styled(DotBase)`
   &:after {
     background-color: ${props => (props.selected ? props.color1 : props.color2)};
     width: 100%;
@@ -72,7 +72,7 @@ const Dot3 = styled(DotBase)`
   border-radius: 50%;
   background-color: ${props => (props.selected ? props.color2 : '')};
 `;
-
+*/
 const Dot4 = styled(DotBase)`
   width: 2rem;
   height: 2rem;

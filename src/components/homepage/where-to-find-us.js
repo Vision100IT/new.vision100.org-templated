@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Map from '../models/google-map';
+//import Map from '../models/google-map';
 
 export default function WhereToFindUs({
   churchDetails: { churchName, streetAddress, city, state }

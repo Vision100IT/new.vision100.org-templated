@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import styled from '@emotion/styled';
 import { fetchDrupalData } from '../../utils/fetch-functions';
 import ContentWrapper from '../content-wrapper';
 import TitleBreadcrumb from './title-breadcrumb';

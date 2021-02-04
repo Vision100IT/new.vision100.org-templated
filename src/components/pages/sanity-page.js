@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import SanityBlock from '../block-text-serializer';
 
 import ContentWrapper from '../content-wrapper';
 import TitleBreadcrumb from './title-breadcrumb';
 
-const sanityQuery = `*[_type == "page"][0] {
+/*const sanityQuery = `*[_type == "page"][0] {
   ...,
   body[]{
     ...,
@@ -32,15 +32,15 @@ const sanityQuery = `*[_type == "page"][0] {
   },
   'mainImage': mainImage.asset->url
 }`
-
+*/
 
 
 export default function SanityPage(sanityPagesData, slug) {
-  const [title, setTitle] = useState(sanityPagesData.sanityPagesData.title);
+  const [title, setTitle] = useState(sanityPagesData.sanityPagesData.title); //eslint-disable-line
   
-  function handleSubmit() {
+  /*function handleSubmit() {
     console.log('Submitting...');
-  }
+  }*/
 
   return (
     <section>

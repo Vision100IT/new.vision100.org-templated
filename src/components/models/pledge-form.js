@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Form, Field } from 'react-final-form';
 import styled from '@emotion/styled';
 import { postToWebform } from '../../utils/post-to-api';
@@ -12,7 +12,7 @@ const onSubmit = async values => {
   form.append("submission[data][3][values][0]", values["email"].replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
   form.append("submission[data][7][values][0]", values["pledgeType"].replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
 
-  switch (values["pledgeType"]) {
+  switch (values["pledgeType"]) {//eslint-disable-line
     case "specifyOnce":
       form.append("submission[data][6][values][0]", values["specificAmountOnce"].replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
       break;

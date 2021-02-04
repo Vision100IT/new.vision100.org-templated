@@ -2,16 +2,16 @@ import React from 'react';
 
 import ContentWrapper from '../content-wrapper';
 import TitleBreadcrumb from './title-breadcrumb';
-import MLCRegistrationForm from '../MLCRegistrationForm';
+import MTSTrainingDayForm from '../MTSTrainingDayForm';
 
 
-export default function MLCRegistration() {
-  const title = "Ministry Leaders Conference 2020 Registration"
+export default function MTSTrainingDay() {
+  const title = "MTS Training Day March 2021"
   return (
     <section>
       <TitleBreadcrumb title={title} breadcrumbs={[['Home', '/']]} />
       <ContentWrapper width="wide">
-        <MLCRegistrationForm />
+        <MTSTrainingDayForm />
       </ContentWrapper>
     </section>
   );

@@ -15,8 +15,8 @@ width: 50%;
 
 const webformUUID = "adac3046-3f40-4188-bbbd-47fbf7896e15"
 
-const discountCost = 10;
-const regularCost = 15;
+//const discountCost = 10;
+//const regularCost = 15;
 
 
 class MTSTrainingForm extends Component {

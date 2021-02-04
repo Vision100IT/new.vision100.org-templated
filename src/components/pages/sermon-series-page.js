@@ -55,6 +55,7 @@ export default function SermonSeriesPage({
               ? sermons[0].series_full_img
               : sermons[0].series_img
           }
+          alt=""
         />
         <h2>Sermons</h2>
         <SermonTable

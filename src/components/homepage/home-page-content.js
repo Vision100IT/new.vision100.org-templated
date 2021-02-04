@@ -12,7 +12,7 @@ const churchDeets = {
   state: 'WA'
 };
 
-const placeholderEvents = [
+const placeholderEvents = [//eslint-disable-line
   {
     title: 'Sunday Service',
     startdate: 'Sunday, x Month, YYYY 9:30AM'
@@ -51,7 +51,7 @@ const Section = styled('section')`
 
 export default function HomePageContent({ globalSermons, setGlobalSermons, upcomingEventsData }) {
   const [sermons, setSermons] = useState(globalSermons);
-  const [churchDetails, setChurchDetails] = useState(churchDeets);
+  const [churchDetails, setChurchDetails] = useState(churchDeets); //eslint-disable-line
   const [upcomingEvents, setUpcomingEvents] = useState(upcomingEventsData);
 
   useEffect(() => {

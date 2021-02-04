@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Form, Field } from 'react-final-form';
 import styled from '@emotion/styled';
 import { postToWebform } from '../../utils/post-to-api';

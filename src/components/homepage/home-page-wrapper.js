@@ -1,6 +1,6 @@
 import React from 'react';
 import slider from '../../assets/img/slider.png';
-import Carousel from '../carousel/carousel';
+//import Carousel from '../carousel/carousel';
 import Welcome from './welcome';
 import HomePageContent from './home-page-content';
 import styled from '@emotion/styled';

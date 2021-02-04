@@ -69,7 +69,8 @@ export default function Menu({items, isVisible}) {
           if (submenu) {
             return (
               <Dropdown>
-                <a href="#">
+                 { //eslint-disable-next-line 
+                 }<a href="#">
                   {title}
                   <Caret />
                 </a>
