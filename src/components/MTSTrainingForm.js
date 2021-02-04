@@ -13,7 +13,7 @@ display: block;
 width: 50%;
 `
 
-const webformUUID = "adac3046-3f40-4188-bbbd-47fbf7896e15"
+const webformUUID = "52ae8473-eee3-4899-af9b-85533d6e9bfa"
 
 const discountCost = 10;
 const regularCost = 15;
@@ -126,9 +126,9 @@ class MTSTrainingForm extends Component {
       var form = new FormData();
       form.append("webform", webformUUID);
       form.append("submission[data][1][values][0]", escape(this.state.apprenticeName).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
-      form.append("submission[data][10][values][0]", escape(this.state.apprenticeEmail).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][2][values][0]", escape(this.state.apprenticeEmail).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
       form.append("submission[data][3][values][0]", escape(this.state.trainerName).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
-      form.append("submission[data][11][values][0]", escape(this.state.trainerEmail).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][4][values][0]", escape(this.state.trainerEmail).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
 
       form.append("submission[data][5][values][0]", escape(this.state.churchOrMinistry).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
       form.append("submission[data][6][values][0]", escape(this.state.yearOfApprentiship).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
@@ -141,7 +141,7 @@ class MTSTrainingForm extends Component {
       form.append("submission[data][9][values][0]", escape(this.state.ableToFinanciallyContribute).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
 
       if(this.state.bulletin === true){
-        form.append("submission[data][12][values][0]", "yes");
+        form.append("submission[data][10][values][0]", "yes");
       }
 
       var that = this;

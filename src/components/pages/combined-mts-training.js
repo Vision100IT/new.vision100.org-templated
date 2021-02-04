@@ -7,7 +7,7 @@ import MTSTrainingForm from '../MTSTrainingForm';
 
 
 export default function CombinedMTSTraining() {
-  const title = "Combined MTS Apprentice Training"
+  const title = "Combined MTS Apprentice Training March 2021"
   return (
     <section>
       <TitleBreadcrumb title={title} breadcrumbs={[['Home', '/']]} />
