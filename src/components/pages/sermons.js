@@ -30,6 +30,43 @@ const Alt = styled.div`
   }
 `;
 
+const ButtonsDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  vertical-align: center;
+  column-gap: 100px;
+  margin-top: 10px;
+  @media (max-width: 560px) {
+    column-gap: 50px;
+  }
+  @media (max-width: 508px) {
+    flex-flow: row wrap;
+  }
+  a:hover, a:focus, a:active{
+    color: #fff;
+  }
+`;
+
+const Button = styled.button`
+margin-top: 20px;
+min-width: 220px;
+border-color: #ef3b24;
+color: #ef3b24;
+padding: 7px 35px;
+background: transparent;
+border: 2px solid;
+transition: all 0.3s ease-in-out;
+font-weight: 400;
+text-align: center;
+vertical-align: middle;
+cursor: pointer;
+white-space: nowrap;
+:hover{
+  background: #ef3b24;
+  color: #fff;
+}
+`
+
 export default function Sermons({ globalSermons, setGlobalSermons }) {
   const [sermons, setSermons] = useState(globalSermons);
   const [recentSeries, setRecentSeries] = useState(null);
@@ -66,7 +103,20 @@ export default function Sermons({ globalSermons, setGlobalSermons }) {
           please <Link to="/allsermons">click here</Link> and you'll be able to
           search through all of our recorded sermons.
         </p>
+        <ButtonsDiv>
+          <a href="https://feeds.feedburner.com/Vision100" rel="noreferrer noopener" target="_blank">
+            <Button>
+              Subscribe to our podcast
+            </Button>
+          </a>
+          <Link to="/allsermons">
+            <Button>
+              Search all sermons
+            </Button>
+          </Link>
+        </ButtonsDiv>
       </ContentWrapper>
+
       <Alt>
         <ContentWrapper width="wide">
           <Grid>

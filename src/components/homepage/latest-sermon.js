@@ -9,7 +9,12 @@ import SVGLogo from '../../assets/img/Logo.svg'
 const Img = styled('img')`
   width: 100%;
   height: 100%;
+  max-width: 270px;
 `;
+
+const AudioPlayerWrapper = styled('div')`
+  max-width: 270px;
+`
 
 const Header = styled('h2')`
   color: #ef3b24;
@@ -24,13 +29,15 @@ export default function LatestSermon({
       <Header>Past Talk</Header>
       {node_title ? (
         <div>
-          <Img src={sermon_img ? sermon_img : series_img ? series_img : SVGLogo} />
+          <Img src={sermon_img ? sermon_img : series_img ? series_img : SVGLogo} /><br />
           <Link to={`/sermon/${nid}`} dangerouslySetInnerHTML={{ __html: node_title }} />
           <div dangerouslySetInnerHTML={{ __html: preacher }}></div>
-          <AudioPlayer
-            playlist={[{ url }]}
-            controls={['playpause', 'spacer', 'progress']}
-          />
+          <AudioPlayerWrapper>
+            <AudioPlayer
+              playlist={[{ url }]}
+              controls={['playpause', 'spacer', 'progress']}
+            />
+          </AudioPlayerWrapper>
           <a href={url}>Download Talk</a>
         </div>
       ) : (
