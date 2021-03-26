@@ -6,7 +6,7 @@ import MTSTrainingDayForm from '../MTSTrainingDayForm';
 
 
 export default function MTSTrainingDay() {
-  const title = "MTS Training Day March 2021"
+  const title = "MTS Training Day September 2021"
   return (
     <section>
       <TitleBreadcrumb title={title} breadcrumbs={[['Home', '/']]} />

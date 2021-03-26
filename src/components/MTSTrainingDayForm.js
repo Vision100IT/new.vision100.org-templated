@@ -430,7 +430,7 @@ class RegistrationFormGenericPaypal extends Component {
         {this.state.submissionID && this.state.paymentMethod === "paypal" ? <GenericPaypal sid={this.state.submissionID} totalCost={this.state.totalAmount} eventName="MTS" /> :
           <>
             <p>
-              Thank you for your registering for the MTS Training Day March 2021.
+              Thank you for your registering for the MTS Training Day September 2021.
               You will receive more information about the conference a week before the event.
               </p>
 
