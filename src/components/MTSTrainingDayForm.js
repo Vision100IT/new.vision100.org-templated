@@ -15,7 +15,7 @@ display: block;
 width: 50%;
 `
 
-const webformUUID = "f0e8114b-0d3a-4c40-92e0-055fcce7eb1b"
+const webformUUID = "1376468a-ec67-4873-bca1-d73eb410bbd3"
 
 const discountCost = 35;
 const regularCost = 45;
@@ -237,23 +237,23 @@ class RegistrationFormGenericPaypal extends Component {
       form.append("submission[data][27][values][0]", escape(this.state.person5Church).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
 
       //dietaryreqs 
-      form.append("submission[data][29][values][0]", escape(this.state.dietaryRequirements).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][28][values][0]", escape(this.state.dietaryRequirements).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
       //payment method
-      form.append("submission[data][33][values][0]", this.state.paymentMethod);
+      form.append("submission[data][32][values][0]", this.state.paymentMethod);
       //Registration amount
-      form.append("submission[data][37][values][0]", registrationCost);
+      form.append("submission[data][36][values][0]", registrationCost);
       //discount code
-      form.append("submission[data][30][values][0]", escape(this.state.discountCode).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][29][values][0]", escape(this.state.discountCode).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
       //support amount
-      form.append("submission[data][32][values][0]", this.state.donationAmount);
+      form.append("submission[data][31][values][0]", this.state.donationAmount);
       //total amount
-      form.append("submission[data][34][values][0]", totalAmount);
+      form.append("submission[data][33][values][0]", totalAmount);
 
       //attended MTS before
-      form.append("submission[data][36][values][0]", this.state.attendedBefore);
+      form.append("submission[data][35][values][0]", this.state.attendedBefore);
 
-      if(this.state.bulletin === true){
-        form.append("submission[data][35][values][0]", "yes");
+      if (this.state.bulletin === true) {
+        form.append("submission[data][34][values][0]", "yes");
       }
 
       var that = this;
@@ -302,10 +302,10 @@ class RegistrationFormGenericPaypal extends Component {
                 <legend>My Details</legend>
                 <label><strong>Church</strong> </label><br />
                 <input type="text" name="myChurch" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.myChurch} /><br /><br />
-                <label><strong>Attended an MTS Training Day Before?</strong> {requiredField}</label><br /><br/>
-            <label><input type="radio" name="attendedBefore" value="no" onChange={this.handleChange.bind(this)} checked={this.state.attendedBefore === "no"} /> This is my first time &nbsp;</label><br />
-            <label><input type="radio" name="attendedBefore" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.attendedBefore === "yes"} />  I have been to an MTS Training Day before &nbsp;</label><br /><br />
-            
+                <label><strong>Attended an MTS Training Day Before?</strong> {requiredField}</label><br /><br />
+                <label><input type="radio" name="attendedBefore" value="no" onChange={this.handleChange.bind(this)} checked={this.state.attendedBefore === "no"} /> This is my first time &nbsp;</label><br />
+                <label><input type="radio" name="attendedBefore" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.attendedBefore === "yes"} />  I have been to an MTS Training Day before &nbsp;</label><br /><br />
+
               </fieldset>
               <br />
             </> : ''}
@@ -368,8 +368,8 @@ class RegistrationFormGenericPaypal extends Component {
               </fieldset>
               <br />
             </> : ''}
-            
-            <br/>
+
+            <br />
             <label><strong>Please specify any dietary requirements here</strong></label><br />
 
             <TextArea className="form-control" name="dietaryRequirements" rows="7" onChange={this.handleChange.bind(this)} value={this.state.dietaryRequirements} />
@@ -393,10 +393,10 @@ class RegistrationFormGenericPaypal extends Component {
               <option value="paypal">Paypal or Credit Card/Debit Card</option>
               <option value="directDeposit">Direct Deposit</option>
               <option value="cheque">Cheque</option>
-            </select><br/><br/>
+            </select><br /><br />
             <p><strong>Monthly Bulletin</strong></p>
             <label><input type="checkbox" name="bulletin" value={this.state.bulletin} onChange={this.handleChange.bind(this)} />
-                            &nbsp;I am happy to be added to the Vision 100 Network monthly email bulletin to keep in touch with what is happening within the network</label><br />            
+                            &nbsp;I am happy to be added to the Vision 100 Network monthly email bulletin to keep in touch with what is happening within the network</label><br />
             <br /><br />
 
 
