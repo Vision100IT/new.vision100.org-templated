@@ -18,6 +18,7 @@ import MLCRegistration from './pages/mlc-registration';
 import MTSTrainingDay from './pages/mts-training-day';
 import CombinedMTSTraining from './pages/combined-mts-training'
 import PaypalReturn from './pages/paypal-return';
+import ChurchPlantingConference from './pages/church-planting-regsitration';
 
 export default function OtherPageWrapper({ globalSermons, setGlobalSermons, pagesData, newslettersData, sanityPagesData }) {
   return pagesData ? (
@@ -81,6 +82,13 @@ export default function OtherPageWrapper({ globalSermons, setGlobalSermons, page
             <MLCRegistration />
           )}
         />
+        <Route
+          path="/churchplantingconference/register"
+          render={({ match }) => (
+            <ChurchPlantingConference />
+          )}
+        />
+
         {/*Sanity Registration Forms
         <Route
           path="/register/:slug"
