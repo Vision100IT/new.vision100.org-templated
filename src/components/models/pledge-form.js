@@ -1,60 +1,7 @@
 import React from 'react';
 import { Form, Field } from 'react-final-form';
 import styled from '@emotion/styled';
-import { postToWebform } from '../../utils/post-to-api';
 
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-const onSubmit = async values => {
-  var form = new FormData();
-  form.append("webform", "2dfe5b8f-b9af-49b7-8afb-b1bacae7c78d");
-  form.append("submission[data][1][values][0]", values["name"].replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
-  form.append("submission[data][2][values][0]", values["phone"].replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
-  form.append("submission[data][3][values][0]", values["email"].replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
-  form.append("submission[data][7][values][0]", values["pledgeType"].replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
-
-  switch (values["pledgeType"]) {//eslint-disable-line
-    case "specifyOnce":
-      form.append("submission[data][6][values][0]", values["specificAmountOnce"].replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
-      break;
-    case "specifyRegular":
-      form.append("submission[data][4][values][0]", values["specificRegularAmount"].replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
-      console.log(values)
-      form.append("submission[data][5][values][0]", values["regularDonationFrequency"].replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
-      break;
-    case "5perweek":
-      form.append("submission[data][4][values][0]", 5);
-      form.append("submission[data][5][values][0]", "weekly");
-      break;
-    case "10perweek":
-      form.append("submission[data][4][values][0]", 10);
-      form.append("submission[data][5][values][0]", "weekly");
-      break;
-    case "20perweek":
-      form.append("submission[data][4][values][0]", 20);
-      form.append("submission[data][5][values][0]", "weekly");
-      break;
-    case "50once":
-      form.append("submission[data][6][values][0]", 50);
-      break;
-    case "100once":
-      form.append("submission[data][6][values][0]", 100);
-      break;
-    case "200once":
-      form.append("submission[data][6][values][0]", 200);
-      break;
-  }
-  if(values["bulletin"]){
-    form.append("submission[data][8][values][0]", "yes");
-  }
-
-  await sleep(300);
-
-  postToWebform(form, function (data) {
-    console.log("submitted")
-  });
-
-  window.alert("Thank you for your pledge. We will get back to you as soon as we can.");
-};
 
 const required = value => (value ? undefined : 'Required');
 
@@ -108,7 +55,7 @@ const Condition = ({ when, is, children }) => (
   </Field>
 )
 
-export default function ContactForm() {
+export default function ContactForm(props) {
   return (
     <section>
       <div
@@ -214,7 +161,7 @@ export default function ContactForm() {
                     {({ input, meta }) => (
                       <div>
                         <label><input {...input} type="radio" />
-                        $20 per week</label>
+                          $20 per week</label>
                         {meta.error && meta.touched && (
                           <span>{meta.error}</span>
                         )}
@@ -225,7 +172,7 @@ export default function ContactForm() {
                     {({ input, meta }) => (
                       <>
                         <label><input {...input} type="radio" />
-                        Specify my own amount</label>
+                          Specify my own amount</label>
                         {meta.error && meta.touched && (
                           <span>{meta.error}</span>
                         )}
@@ -263,7 +210,7 @@ export default function ContactForm() {
                     {({ input, meta }) => (
                       <div>
                         <label><input {...input} type="radio" />
-                        $50</label>
+                          $50</label>
                         {meta.error && meta.touched && (
                           <span>{meta.error}</span>
                         )}
@@ -274,7 +221,7 @@ export default function ContactForm() {
                     {({ input, meta }) => (
                       <div>
                         <label><input {...input} type="radio" />
-                        $100</label>
+                          $100</label>
                         {meta.error && meta.touched && (
                           <span>{meta.error}</span>
                         )}
@@ -285,7 +232,7 @@ export default function ContactForm() {
                     {({ input, meta }) => (
                       <div>
                         <label><input {...input} type="radio" />
-                        $200</label>
+                          $200</label>
                         {meta.error && meta.touched && (
                           <span>{meta.error}</span>
                         )}
@@ -296,7 +243,7 @@ export default function ContactForm() {
                     {({ input, meta }) => (
                       <div>
                         <label><input {...input} type="radio" />
-                        Specify my own one-off amount</label>
+                          Specify my own one-off amount</label>
                         {meta.error && meta.touched && (
                           <span>{meta.error}</span>
                         )}
@@ -329,15 +276,15 @@ export default function ContactForm() {
                   <Field name="bulletin" type="checkbox">
                     {({ input, meta }) => (
                       <div>
-                         <label><Checkbox
-                            {...input}
-                            type="checkbox"
-                          />
-                        &nbsp;
-                        I am happy to be added to the Vision 100 Network monthly email bulletin to keep in touch with what is happening within the network
+                        <label><Checkbox
+                          {...input}
+                          type="checkbox"
+                        />
+                          &nbsp;
+                          I am happy to be added to the Vision 100 Network monthly email bulletin to keep in touch with what is happening within the network
                         </label>
                         <div>
-                         
+
                         </div>
                         {meta.error && meta.touched && (
                           <span>{meta.error}</span>
@@ -358,7 +305,7 @@ export default function ContactForm() {
               </div>
             </form>
           )}
-          onSubmit={onSubmit}
+          onSubmit={(values) => props.onSubmitThing(values)}
         />
 
       </div>
