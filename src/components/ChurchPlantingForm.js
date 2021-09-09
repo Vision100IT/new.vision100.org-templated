@@ -98,10 +98,12 @@ class ChurchPlantingForm extends Component {
   }
 
   handleChange(e) {
+    console.log(e)
     let value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
 
     var change = {};
     change[e.target.name] = value;
+    console.log(change)
     this.setState(change);
   }
 
@@ -115,6 +117,10 @@ class ChurchPlantingForm extends Component {
     }
     if (validator.isEmpty(this.state.email) || !validator.isEmail(this.state.email)) {
       errorMessage += "Please enter a valid email address.\n";
+    }
+     //at least 1 location selected
+     if (!this.state.northWest && !this.state.stJohns) {
+      errorMessage += "Please select the location(s) that you will be attending.\n";
     }
 
     //names and emails of person 1 to 5 if applicable
@@ -244,6 +250,17 @@ class ChurchPlantingForm extends Component {
       //total amount
       form.append("submission[data][33][values][0]", totalAmount);
 
+      //locations
+      let i = 0
+      if (this.state.northWest) {
+        form.append("submission[data][37][values][" + i + "]", 'northWest');
+        i++;
+      }
+      if (this.state.stJohns) {
+        form.append("submission[data][37][values][" + i + "]", 'stJohns');
+        i++;
+      }
+
       //attended MTS before
       form.append("submission[data][35][values][0]", this.state.attendedBefore);
 
@@ -251,6 +268,9 @@ class ChurchPlantingForm extends Component {
         form.append("submission[data][34][values][0]", "yes");
       }
 
+      for(var pair of form.entries()) {
+        console.log(pair[0]+ ', '+ pair[1]);
+     }
       var that = this;
       postToWebform(form, function (data) {
         that.setState({ submissionID: data.sid })
@@ -359,7 +379,11 @@ class ChurchPlantingForm extends Component {
               </fieldset>
               <br />
             </> : ''}
-
+            <label><strong>Locations Attending:</strong> {requiredField}</label><br />
+            <label><input type="checkbox" name="stJohns" value={this.state.stJohns} onChange={this.handleChange.bind(this)} />
+                            &nbsp;St John's Presbyterian Church</label><br />
+            <label><input type="checkbox" name="northWest" value={this.state.northWest} onChange={this.handleChange.bind(this)} />
+                            &nbsp;North Live Steam (Location TBA)</label><br />
             <br />
             <label><strong>Please specify any dietary requirements here</strong></label><br />
 

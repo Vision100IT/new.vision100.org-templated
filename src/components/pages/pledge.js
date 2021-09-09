@@ -31,9 +31,8 @@ export default function Pledge() {
   const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
   const onSubmit = async (values) => {
-    console.log('onsubmit thing')
+    console.log('submitting...')
     console.log(values)
-
     var form = new FormData();
     form.append("webform", "2dfe5b8f-b9af-49b7-8afb-b1bacae7c78d");
     form.append("submission[data][1][values][0]", values["name"].replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
