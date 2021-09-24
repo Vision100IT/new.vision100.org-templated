@@ -268,9 +268,6 @@ class ChurchPlantingForm extends Component {
         form.append("submission[data][34][values][0]", "yes");
       }
 
-      for(var pair of form.entries()) {
-        console.log(pair[0]+ ', '+ pair[1]);
-     }
       var that = this;
       postToWebform(form, function (data) {
         that.setState({ submissionID: data.sid })
@@ -383,7 +380,7 @@ class ChurchPlantingForm extends Component {
             <label><input type="checkbox" name="stJohns" value={this.state.stJohns} onChange={this.handleChange.bind(this)} />
                             &nbsp;St John's Presbyterian Church</label><br />
             <label><input type="checkbox" name="northWest" value={this.state.northWest} onChange={this.handleChange.bind(this)} />
-                            &nbsp;North Live Steam (Location TBA)</label><br />
+                            &nbsp;Pathway to Life</label><br />
             <br />
             <label><strong>Please specify any dietary requirements here</strong></label><br />
 
