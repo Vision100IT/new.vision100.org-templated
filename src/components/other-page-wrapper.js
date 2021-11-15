@@ -19,6 +19,7 @@ import MTSTrainingDay from './pages/mts-training-day';
 import CombinedMTSTraining from './pages/combined-mts-training'
 import PaypalReturn from './pages/paypal-return';
 import ChurchPlantingConference from './pages/church-planting-regsitration';
+import PreachersWorkshopRegistration from './pages/preachers-workshop-registration';
 
 export default function OtherPageWrapper({ globalSermons, setGlobalSermons, pagesData, newslettersData, sanityPagesData }) {
   return pagesData ? (
@@ -86,6 +87,13 @@ export default function OtherPageWrapper({ globalSermons, setGlobalSermons, page
           path="/churchplantingconference/register"
           render={({ match }) => (
             <ChurchPlantingConference />
+          )}
+        />
+
+        <Route
+          path="/preachersworkshop/register"
+          render={({ match }) => (
+            <PreachersWorkshopRegistration />
           )}
         />
 

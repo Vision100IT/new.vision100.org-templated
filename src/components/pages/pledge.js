@@ -23,7 +23,7 @@ const initialState = {
 export default function Pledge() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [pledgeAmount, setPledgeAmount] = useState(0);
-  const [frequency, setFrequency] = useState(null);
+  const [frequency, setFrequency] = useState(null); //eslint-disable-line
   const [showPaypal, setShowPaypal] = useState(false);
   const [showForm, setShowForm] = useState(true);
   const [submissionId, setSubmissionId] = useState(0);
