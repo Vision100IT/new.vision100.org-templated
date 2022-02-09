@@ -15,7 +15,7 @@ display: block;
 width: 50%;
 `
 
-const webformUUID = "1376468a-ec67-4873-bca1-d73eb410bbd3"
+const webformUUID = "488a3878-3482-48ae-b74a-adb2383671e6"
 
 const discountCost = 35;
 const regularCost = 45;
@@ -184,7 +184,7 @@ class RegistrationFormGenericPaypal extends Component {
       var totalAmount = 0;
       var registrationCost = 0;
       var costPerRegistration = regularCost;
-      if (this.state.discountCode && this.state.discountCode.toLowerCase() === "v100 cost") {
+      if (this.state.discountCode && ((this.state.discountCode.toLowerCase() === "v100 cost") || this.state.discountCode.toLowerCase() === "v100cost")) {
         costPerRegistration = discountCost
       }
       switch (this.state.whoRegistering) {//eslint-disable-line
@@ -381,10 +381,10 @@ class RegistrationFormGenericPaypal extends Component {
 
             <p><strong>Support (Optional)</strong></p>
             <label><input type="checkbox" name="support" value={this.state.support} onChange={this.handleChange.bind(this)} />
-                            &nbsp;I would like to pledge to make an extra donation towards raising up leaders and church planting in Tasmania (recommended amount $25)</label><br /><br />
+              &nbsp;I would like to pledge to make an extra donation towards raising up leaders and church planting in Tasmania (recommended amount $25)</label><br /><br />
 
             {this.state.support ? <><label><strong>Donation Amount</strong> </label><br />
-            $<input type="number" name="donationAmount" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.donationAmount} /><br /></> : ''}
+              $<input type="number" name="donationAmount" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.donationAmount} /><br /></> : ''}
 
 
             <p><strong>Payment Method</strong></p>
@@ -396,7 +396,7 @@ class RegistrationFormGenericPaypal extends Component {
             </select><br /><br />
             <p><strong>Monthly Bulletin</strong></p>
             <label><input type="checkbox" name="bulletin" value={this.state.bulletin} onChange={this.handleChange.bind(this)} />
-                            &nbsp;I am happy to be added to the Vision 100 Network monthly email bulletin to keep in touch with what is happening within the network</label><br />
+              &nbsp;I am happy to be added to the Vision 100 Network monthly email bulletin to keep in touch with what is happening within the network</label><br />
             <br /><br />
 
 
@@ -430,9 +430,9 @@ class RegistrationFormGenericPaypal extends Component {
         {this.state.submissionID && this.state.paymentMethod === "paypal" ? <GenericPaypal sid={this.state.submissionID} totalCost={this.state.totalAmount} eventName="MTS" /> :
           <>
             <p>
-              Thank you for your registering for the MTS Training Day September 2021.
+              Thank you for your registering for the MTS Training Day March 2022.
               You will receive more information about the conference a week before the event.
-              </p>
+            </p>
 
             <p>Below are more details on how you can make your payment</p>
             <br />
@@ -456,7 +456,7 @@ class RegistrationFormGenericPaypal extends Component {
               Having difficulty with payment?<br /><br />
 
               Email <a href="mailto:eventmanager@vision100.org">eventmanager@vision100.org</a> with any questions you may have.
-          </p>
+            </p>
 
           </>}
       </div >);
