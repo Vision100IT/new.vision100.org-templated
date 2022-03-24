@@ -15,7 +15,6 @@ const SliderWrapper = styled('div')`
 `;
 
 export default function HomePageWrapper({ globalSermons, setGlobalSermons, upcomingEventsData }) {
-  console.log(globalSermons);
   return (
     <section>
       <SliderWrapper>

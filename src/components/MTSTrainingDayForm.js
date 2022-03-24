@@ -260,7 +260,36 @@ class RegistrationFormGenericPaypal extends Component {
       postToWebform(form, function (data) {
         that.setState({ submissionID: data.sid })
         that.setState({ formSubmitted: true })
-      })
+
+        const values = {
+          "name": that.state.fullName,
+          "event": 'MTS Training Day March'
+        }
+        console.log(values)
+        //send email via nextjs site
+        const inputs = {
+            "targetEmail": that.state.email,
+            "message": values
+          };
+        
+
+        fetch('https://next.vision100.org/api/send', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          mode: 'no-cors',
+          body: JSON.stringify(inputs)
+        })
+          .then(response => response.json())
+          .then(data => {
+            console.log('Success:', data);
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+        }
+    );
     }
 
   }
