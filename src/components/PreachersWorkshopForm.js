@@ -147,7 +147,8 @@ class PreachersWorkshopForm extends Component {
             <label><strong>Which location will you participate from?</strong> {requiredField}</label><br /><br />
             <select name="participatingFrom" value={this.state.participatingFrom} onChange={this.handleChange.bind(this)}>
               <option value="south">South (St John's Presbyterian Church building)</option>
-              <option value="north">North (via livestream)</option>
+              <option value="north">North (Pathway to Life, Devonport)</option>
+              <option value="online">Online</option>
             </select><br /><br />
 
             <label><strong>Registration Cost?</strong> {requiredField}</label><br /><br />
