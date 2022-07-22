@@ -1,18 +1,17 @@
-import React from 'react';
+import React from "react";
 
-import ContentWrapper from '../content-wrapper';
-import TitleBreadcrumb from './title-breadcrumb';
-import ChurchPlantingForm from '../ChurchPlantingForm';
-
+import ContentWrapper from "../content-wrapper";
+import TitleBreadcrumb from "./title-breadcrumb";
+import ChurchPlantingForm, { tcpcEventName } from "../ChurchPlantingForm";
 
 export default function ChurchPlantingConference() {
-  const title = "Church Planting Conference October 2021"
-  return (
-    <section>
-      <TitleBreadcrumb title={title} breadcrumbs={[['Home', '/']]} />
-      <ContentWrapper width="wide">
-        <ChurchPlantingForm />
-      </ContentWrapper>
-    </section>
-  );
+	const title = tcpcEventName;
+	return (
+		<section>
+			<TitleBreadcrumb title={title} breadcrumbs={[["Home", "/"]]} />
+			<ContentWrapper width="wide">
+				<ChurchPlantingForm />
+			</ContentWrapper>
+		</section>
+	);
 }
