@@ -360,7 +360,7 @@ class ChurchPlantingForm extends Component {
 			//payment method
 			form.append("submission[data][32][values][0]", this.state.paymentMethod);
 			//Registration amount
-			form.append("submission[data][36][values][0]", registrationCost);
+			form.append("submission[data][35][values][0]", registrationCost);
 			//discount code
 			form.append(
 				"submission[data][29][values][0]",
@@ -377,16 +377,13 @@ class ChurchPlantingForm extends Component {
 			//locations
 			let i = 0;
 			if (this.state.northWest) {
-				form.append("submission[data][37][values][" + i + "]", "northWest");
+				form.append("submission[data][36][values][" + i + "]", "northWest");
 				i++;
 			}
 			if (this.state.stJohns) {
-				form.append("submission[data][37][values][" + i + "]", "stJohns");
+				form.append("submission[data][36][values][" + i + "]", "stJohns");
 				i++;
 			}
-
-			//attended MTS before
-			form.append("submission[data][35][values][0]", this.state.attendedBefore);
 
 			if (this.state.bulletin === true) {
 				form.append("submission[data][34][values][0]", "yes");
@@ -819,7 +816,7 @@ class ChurchPlantingForm extends Component {
 							""
 						)}
 						<label>
-							<strong>Locations Attending:</strong> {requiredField}
+							<strong>Venue Attending:</strong> {requiredField}
 						</label>
 						<br />
 						<label>
@@ -829,7 +826,7 @@ class ChurchPlantingForm extends Component {
 								value={this.state.stJohns}
 								onChange={this.handleChange.bind(this)}
 							/>
-							&nbsp;St John's Presbyterian Church
+							&nbsp;St John's Presbyterian Church, Hobart
 						</label>
 						<br />
 						<label>
@@ -839,7 +836,7 @@ class ChurchPlantingForm extends Component {
 								value={this.state.northWest}
 								onChange={this.handleChange.bind(this)}
 							/>
-							&nbsp;Pathway to Life
+							&nbsp;Pathway to Life, Devonport
 						</label>
 						<br />
 						<br />
