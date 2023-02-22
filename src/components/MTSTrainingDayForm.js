@@ -995,14 +995,23 @@ class RegistrationFormGenericPaypal extends Component {
 			formSubmitted = (
 				<div>
 					{this.state.submissionID && this.state.paymentMethod === "paypal" ? (
-						<GenericPaypal sid={this.state.submissionID} totalCost={this.state.totalAmount} eventName="MTS" />
+						<GenericPaypal
+							sid={this.state.submissionID}
+							totalCost={this.state.totalAmount}
+							eventName="MTS"
+							eventConfirmationMessage={`Thank you for registering for the ${mtsEventName}. You will receive more information about the day a week
+						before the event.`}
+						/>
 					) : (
 						<>
 							<p>
-								Thank you for your registering for the {mtsEventName}. You will receive more information about the
-								conference a week before the event.
+								Thank you for registering for the {mtsEventName}. You will receive more information about the day a week
+								before the event.
 							</p>
-
+							<p>
+								If you require an invoice, please email{" "}
+								<a href="mailto:eventmanager@vision100.org">eventmanager@vision100.org</a>
+							</p>
 							<p>Below are more details on how you can make your payment</p>
 							<br />
 							<p>
