@@ -15,9 +15,10 @@ const TextArea = styled.textarea`
 	width: 50%;
 `;
 
-const webformUUID = "dff71408-5a9d-47cd-89d7-a82b9ef6989f"; //September 2022
-export const mtsEventName = "MTS Training Day September 2022";
+const webformUUID = "91d6ba81-579b-454d-b7fd-551badd09ce1"; //March 2023
+export const mtsEventName = "MTS Training Day March 2023";
 
+const discountCode = "V100March".toLowerCase();
 const discountCost = 35;
 const regularCost = 45;
 
@@ -180,11 +181,7 @@ class RegistrationFormGenericPaypal extends Component {
 			var totalAmount = 0;
 			var registrationCost = 0;
 			var costPerRegistration = regularCost;
-			if (
-				this.state.discountCode &&
-				(this.state.discountCode.toLowerCase() === "v100 discount" ||
-					this.state.discountCode.toLowerCase() === "v100discount")
-			) {
+			if (this.state.discountCode && this.state.discountCode.toLowerCase() === discountCode) {
 				costPerRegistration = discountCost;
 			}
 			switch (
