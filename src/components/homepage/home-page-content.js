@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import { fetchDrupalData } from '../../utils/fetch-functions';
 import LatestSermon from './latest-sermon';
-import WhereToFindUs from './where-to-find-us';
+//import WhereToFindUs from './where-to-find-us';
 import UpcomingEvents from './upcoming-events';
 
 const churchDeets = {
@@ -81,7 +81,8 @@ export default function HomePageContent({ globalSermons, setGlobalSermons, upcom
   return (
     <Section>
       <LatestSermon latestSermon={sermons ? sermons[0] : ''} />
-      <WhereToFindUs churchDetails={churchDetails} />
+      {/* <WhereToFindUs churchDetails={churchDetails} /> */}
+      <div></div>
       <UpcomingEvents upcomingEvents={upcomingEvents} />
     </Section>
   );

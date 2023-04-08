@@ -87,12 +87,12 @@ export default function SubmenuBlock({submenu: {blurb, menus}}) {
     <Outer>
       <Wrapper columns={menus.length >= 2 ? menus.length : 2}>
         <Blurb>{blurb}</Blurb>
-        {menus.map(list => (
-          <SubmenuList>
+        {menus.map((list,idx) => (
+          <SubmenuList key={`sm_ul-${idx}`}>
             <ul>
               <Header>{list.header}</Header>
-              {list.items.map(item => (
-                <li>
+              {list.items.map((item, idx) => (
+                <li key={`sm_li-${idx}`}>
                   {item.externalLink === true ? (
                     <ExternalLink
                       href={item.url}

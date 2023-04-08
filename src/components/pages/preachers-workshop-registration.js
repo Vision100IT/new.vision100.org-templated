@@ -6,7 +6,7 @@ import PreachersWorkshopForm from '../PreachersWorkshopForm';
 
 
 export default function MLCRegistration() {
-  const title = "Preachers Workshop Registration 2022"
+  const title = "Preachers Workshop Registration 2023"
   return (
     <section>
       <TitleBreadcrumb title={title} breadcrumbs={[['Home', '/']]} />

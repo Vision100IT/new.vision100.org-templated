@@ -63,18 +63,18 @@ export default function Menu({items, isVisible}) {
   return (
     <ThemeProvider theme={theme}>
       <List isVisible={isVisible ? 'block' : 'none'}>
-        {items.map(item => {
+        {items.map((item, idx) => {
           const {title, submenu, slug, name} = item;
 
           if (submenu) {
             return (
-              <Dropdown>
+              <Dropdown key={`menu-${idx}`}>
                  { //eslint-disable-next-line 
                  }<a href="#">
                   {title}
                   <Caret />
                 </a>
-                <SubmenuBlock submenu={submenu} />
+                <SubmenuBlock key={`submenu-${idx}`} submenu={submenu} />
               </Dropdown>
             );
           }

@@ -4,7 +4,7 @@ import { escape } from 'he'
 import GenericPaypal from './registrations/paypal'
 import { postToWebform } from '../utils/post-to-api.js';
 
-const webformUUID = "67277241-910e-407f-b34b-3c614a5fd7a8"
+const webformUUID = "4dd6991d-b383-4a3c-a43e-a484986eb972"
 
 class PreachersWorkshopForm extends Component {
 
@@ -104,10 +104,10 @@ class PreachersWorkshopForm extends Component {
       form.append("submission[data][4][values][0]", escape(this.state.church).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
 
       form.append("submission[data][5][values][0]", escape(this.state.attendedBefore).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
-      form.append("submission[data][6][values][0]", escape(this.state.registrationType).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
-      form.append("submission[data][8][values][0]", escape(this.state.participatingFrom).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][7][values][0]", escape(this.state.registrationType).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][6][values][0]", escape(this.state.participatingFrom).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
 
-      form.append("submission[data][7][values][0]", escape(this.state.paymentMethod).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][8][values][0]", escape(this.state.paymentMethod).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
 
       var totalAmount = this.state.registrationType === 'full' ? 30 : 10;
       this.setState({ totalAmount: totalAmount })
@@ -192,7 +192,7 @@ class PreachersWorkshopForm extends Component {
       formSubmitted = (<div>
         {this.state.submissionID && this.state.paymentMethod === "paypal" ? <GenericPaypal sid={this.state.submissionID} totalCost={this.state.totalAmount} eventName="PW" /> :
           <>
-            <p>Thank you for registering for Preachers Workshop 2022!</p>
+            <p>Thank you for registering for Preachers Workshop 2023!</p>
 
             <p>Below are more details on how you can make your payment</p>
             <br />

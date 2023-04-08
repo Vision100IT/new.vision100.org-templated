@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import AudioPlayer from 'react-responsive-audio-player';
 import '../../assets/css/audioplayer.css';
 import styled from '@emotion/styled';
@@ -46,12 +45,3 @@ export default function LatestSermon({
     </section>
   );
 }
-
-LatestSermon.propTypes = {
-  latestSermon: PropTypes.object.isRequired,
-  nid: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  sermon_img: PropTypes.string.isRequired,
-  node_title: PropTypes.string.isRequired,
-  preacher: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired
-};

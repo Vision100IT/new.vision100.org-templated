@@ -31,7 +31,7 @@ export default function UpcomingEvents({upcomingEventsData}) {
   return (
     <section>
       <Header>Upcoming Events</Header>
-      {upcomingEvents
+      {upcomingEvents && upcomingEvents.length > 0
         ? upcomingEvents.map(event => {
             return event.url ? (
               event.url.indexOf('http') === 0 ||
@@ -73,5 +73,5 @@ export default function UpcomingEvents({upcomingEventsData}) {
 }
 
 UpcomingEvents.propTypes = {
-  upcomingEventsData: PropTypes.array.isRequired
+  upcomingEventsData: PropTypes.array
 };
