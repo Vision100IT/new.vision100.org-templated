@@ -15,10 +15,12 @@ const TextArea = styled.textarea`
 	width: 50%;
 `;
 
-const webformUUID = "699a4157-626a-4400-a188-804565fdd9f8"; // 2022
-export const tcpcEventName = "Tasmanian Church Planting Conference 2022";
-const discountCost = 45;
+const webformUUID = "b325462a-1e63-4e5b-b892-9728015a6286"; // 2023
+export const tcpcEventName = "Tasmanian Church Planting Conference 2023";
+const discountCode = "v100discount".toLowerCase();
+const discountAmount = 10;
 const regularCost = 55;
+const northWestPrice = 40;
 
 class ChurchPlantingForm extends Component {
 	constructor(props) {
@@ -53,7 +55,8 @@ class ChurchPlantingForm extends Component {
 			totalAmount: 0,
 			otherRegistrations: 0,
 			discountCode: "",
-			bulletin: false
+			bulletin: false,
+			venueAttending: ""
 		};
 
 		this.resetRegistrationForm = this.resetRegistrationForm.bind(this);
@@ -91,7 +94,8 @@ class ChurchPlantingForm extends Component {
 			totalAmount: 0,
 			otherRegistrations: 0,
 			discountCode: "",
-			bulletin: false
+			bulletin: false,
+			venueAttending: ""
 		});
 	}
 
@@ -117,8 +121,8 @@ class ChurchPlantingForm extends Component {
 			errorMessage += "Please enter a valid email address.\n";
 		}
 		//at least 1 location selected
-		if (!this.state.northWest && !this.state.stJohns) {
-			errorMessage += "Please select the location(s) that you will be attending.\n";
+		if (!this.state.venueAttending || this.state.venueAttending === "") {
+			errorMessage += "Please select the location that you will be attending.\n";
 		}
 
 		//names and emails of person 1 to 5 if applicable
@@ -180,13 +184,8 @@ class ChurchPlantingForm extends Component {
 			this.setState({ formValid: true });
 			var totalAmount = 0;
 			var registrationCost = 0;
-			var costPerRegistration = regularCost;
-			if (
-				(this.state.discountCode && this.state.discountCode.toLowerCase() === "v100discount") ||
-				(this.state.discountCode && this.state.discountCode.toLowerCase() === "v100 discount")
-			) {
-				costPerRegistration = discountCost;
-			}
+			var costPerRegistration = this.state.venueAttending === "northWest" ? northWestPrice : regularCost;
+
 			switch (
 				this.state.whoRegistering //eslint-disable-line
 			) {
@@ -204,6 +203,10 @@ class ChurchPlantingForm extends Component {
 					break;
 			}
 			totalAmount += registrationCost;
+			if (this.state.discountCode && this.state.discountCode.toLowerCase() === discountCode) {
+				totalAmount -= discountAmount;
+			}
+
 			if (this.state.support) {
 				totalAmount += parseInt(this.state.donationAmount);
 			}
@@ -376,11 +379,11 @@ class ChurchPlantingForm extends Component {
 
 			//locations
 			let i = 0;
-			if (this.state.northWest) {
+			if (this.state.venueAttending === "northWest") {
 				form.append("submission[data][36][values][" + i + "]", "northWest");
 				i++;
 			}
-			if (this.state.stJohns) {
+			if (this.state.venueAttending === "stJohns") {
 				form.append("submission[data][36][values][" + i + "]", "stJohns");
 				i++;
 			}
@@ -815,29 +818,15 @@ class ChurchPlantingForm extends Component {
 						) : (
 							""
 						)}
-						<label>
-							<strong>Venue Attending:</strong> {requiredField}
-						</label>
-						<br />
-						<label>
-							<input
-								type="checkbox"
-								name="stJohns"
-								value={this.state.stJohns}
-								onChange={this.handleChange.bind(this)}
-							/>
-							&nbsp;St John's Presbyterian Church, Hobart
-						</label>
-						<br />
-						<label>
-							<input
-								type="checkbox"
-								name="northWest"
-								value={this.state.northWest}
-								onChange={this.handleChange.bind(this)}
-							/>
-							&nbsp;Pathway to Life, Devonport
-						</label>
+						<p>
+							<strong>Venue Attending:</strong>
+							{requiredField}
+						</p>
+						<select name="venueAttending" value={this.state.venueAttending} onChange={this.handleChange.bind(this)}>
+							<option value="">- Select -</option>
+							<option value="stJohns">St John's Presbyterian Church, Hobart ($55)</option>
+							<option value="northWest">Pathway to Life, Devonport ($40)</option>
+						</select>
 						<br />
 						<br />
 						<label>

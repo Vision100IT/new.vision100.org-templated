@@ -63,7 +63,7 @@ export default function OtherPageWrapper({
 				<Route path="/mtstraining/register" render={({ match }) => <CombinedMTSTraining />} />
 				<Route path="/mtstrainingday/register" render={({ match }) => <MTSTrainingDay />} />
 				<Route path="/MLC/register" render={({ match }) => <MLCRegistration />} />
-				<Route path="/tcpc/register" render={({ match }) => <ChurchPlantingConference />} />
+				<Route path="/tcpec/register" render={({ match }) => <ChurchPlantingConference />} />
 
 				<Route path="/preachersworkshop/register" render={({ match }) => <PreachersWorkshopRegistration />} />
 

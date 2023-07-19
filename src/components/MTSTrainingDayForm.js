@@ -15,11 +15,11 @@ const TextArea = styled.textarea`
 	width: 50%;
 `;
 
-const webformUUID = "91d6ba81-579b-454d-b7fd-551badd09ce1"; //March 2023
-export const mtsEventName = "MTS Training Day March 2023";
+const webformUUID = "465c8b48-0e79-45d0-b8b6-b4d42eb8d545"; //Sep 2023
+export const mtsEventName = "MTS Training Day September 2023";
 
-const discountCode = "V100March".toLowerCase();
-const discountCost = 35;
+const discountCode = "V100Sep".toLowerCase();
+const discountAmount = 10;
 const regularCost = 45;
 
 class RegistrationFormGenericPaypal extends Component {
@@ -181,9 +181,7 @@ class RegistrationFormGenericPaypal extends Component {
 			var totalAmount = 0;
 			var registrationCost = 0;
 			var costPerRegistration = regularCost;
-			if (this.state.discountCode && this.state.discountCode.toLowerCase() === discountCode) {
-				costPerRegistration = discountCost;
-			}
+
 			switch (
 				this.state.whoRegistering //eslint-disable-line
 			) {
@@ -201,6 +199,12 @@ class RegistrationFormGenericPaypal extends Component {
 					break;
 			}
 			totalAmount += registrationCost;
+
+			//only taking discount once per registration even for multiple people
+			if (this.state.discountCode && this.state.discountCode.toLowerCase() === discountCode) {
+				totalAmount -= discountAmount;
+			}
+
 			if (this.state.support) {
 				totalAmount += parseInt(this.state.donationAmount);
 			}

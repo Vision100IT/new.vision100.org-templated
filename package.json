@@ -93,5 +93,8 @@
         "version": "detect"
       }
     }
+  },
+  "volta": {
+    "node": "16.20.1"
   }
 }
