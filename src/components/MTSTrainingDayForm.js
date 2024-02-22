@@ -15,10 +15,10 @@ const TextArea = styled.textarea`
 	width: 50%;
 `;
 
-const webformUUID = "465c8b48-0e79-45d0-b8b6-b4d42eb8d545"; //Sep 2023
-export const mtsEventName = "MTS Training Day September 2023";
+const webformUUID = "09a6fdf7-20f0-49dc-aee0-60c6f1df38d0"; //Mar 2024
+export const mtsEventName = "MTS Training Day March 2024";
 
-const discountCode = "V100Sep".toLowerCase();
+const discountCode = "V100Mar".toLowerCase();
 const discountAmount = 10;
 const regularCost = 45;
 
