@@ -65,7 +65,7 @@ export default function OtherPageWrapper({
 				<Route path="/MLC/register" render={({ match }) => <MLCRegistration />} />
 				<Route path="/tcpec/register" render={({ match }) => <ChurchPlantingConference />} />
 
-				<Route path="/preachersworkshop/register" render={({ match }) => <PreachersWorkshopRegistration />} />
+				<Route path="/handlingtheword/register" render={({ match }) => <PreachersWorkshopRegistration />} />
 
 				{/*Sanity Registration Forms
         <Route
